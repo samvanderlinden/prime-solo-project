@@ -1,3 +1,12 @@
+.about {
+    background-color: #163260;
+    width: 30%;
+    height: 250px;
+    margin: 20px augo;
+    padding: 25px;
+    color: white;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
