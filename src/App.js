@@ -11,12 +11,16 @@ import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import UserPage from './components/UserPage/UserPage';
 import InfoPage from './components/InfoPage/InfoPage';
+import StrengthPage from './components/StrengthPage/StrengthPage';
+import AerobicPage from './components/AerobicPage/AerobicPage';
+import HIIT from './components/HIIT/HIIT';
+import YogaPage from './components/YogaPage/YogaPage';
 
 import './styles/main.css';
 
 const App = () => (
   <div>
-    <Header title="Project Base" />
+    <Header title="FitnessRx" />
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
@@ -35,6 +39,22 @@ const App = () => (
         <Route
           path="/info"
           component={InfoPage}
+        />
+        <Route 
+          path="/strength"
+          component={StrengthPage}
+        />
+        <Route 
+          path="/aerobic"
+          component={AerobicPage}
+        />
+        <Route 
+          path="/HIIT"
+          component={HIIT}
+        />
+        <Route 
+          path="/yoga"
+          component={YogaPage}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
