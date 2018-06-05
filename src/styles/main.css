@@ -17,9 +17,13 @@ body {
 }
 
 .instructions {
-    background-color: #00acb0;
+    /* background-color: #00acb0; */
     padding: 5px;
     color: #ece7e7;
+    background-image: url('https://images.unsplash.com/photo-1499438075715-fc23ef376ab9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6be00acf4c3c3b5750307385633e8149&auto=format&fit=crop&w=1008&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
 }
 
 form {
@@ -57,7 +61,7 @@ input[type="submit"] {
 }
 
 .navbar {
-  background-color: #00acb0;
+  /* background-color: #00acb0; */
   width: 100%;
   border-radius: 0px;
 }
@@ -75,7 +79,7 @@ li {
 
 li a {
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;

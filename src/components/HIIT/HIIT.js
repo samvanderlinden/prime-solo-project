@@ -13,8 +13,27 @@ const mapStateToProps = state => ({
 class HIIT extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            newHiitArticle: {
+                article_title: '',
+                article_url: '',
+                exercise_category: '',
+            }
+        }
     }
 
+    handleChange = propertyName => event => {
+        this.setState({
+            newItem: {
+                ...this.state.newHiitArticle,
+                [propertyName]: event.target.value,
+            }
+        });
+    }
+
+    // addNewHiitArticle = () => {
+
+    // }
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
@@ -34,7 +53,15 @@ class HIIT extends Component {
                 <div>
                     <p>
                         High Intensity Interval Training Page
-              </p>
+                    </p>
+                    <form onSubmit={this.addNewHiitArticle}>
+                        <input className="input" onChange={this.handleChange('article_title')} value={this.state.newHiitArticle.article_title} placeholder='Article Title' />
+                        <input className="input" onChange={this.handleChange('article_url')} value={this.state.newHiitArticle.article_url} placeholder='Article url here' />
+                        <input className="input" onChange={this.handleChange('exercise_category')} value={this.state.newHiitArticle.exercise_category} placeholder='Exercise Category' />
+                        <button>Vote up</button>
+                        <button>Vote down</button>
+                        <input className="button" type="submit" value="Post article" />
+                    </form>
                 </div>
             );
         }
