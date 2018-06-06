@@ -6,6 +6,7 @@ import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 import axios from 'axios';
+import StrengthItems from '../StrengthItems/StrengthItems';
 
 
 const mapStateToProps = state => ({
@@ -15,16 +16,9 @@ const mapStateToProps = state => ({
 class StrengthPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            newStrengthArticle: {
-                article_title: '',
-                article_url: '',
-                exercise_category: '',
-                date_posted: '',
-                // up_likes: '',
-                // down_likes: '',
-            }
-        }
+        this.state={
+            newStrengthArticle: [],
+        }        
     }
 
     handleChange = propertyName => event => {
@@ -55,29 +49,26 @@ class StrengthPage extends Component {
                 newStrengthArticle: response.data
             })
         })
-        .catch((error) => {
-            console.log('error on GET strengths', error)
-        })
+            .catch((error) => {
+                console.log('error on GET strengths', error)
+            })
     }
 
     addNewStrengthArticle = event => {
         event.preventDefault();
         console.log('addNewStrengthArticle', this.state.newStrengthArticle);
-        // this.props.dispatch({ type: 'ADD_STRENGTH_ARTICLE', payload: this.state.newStrengthArticle})
-        // this.setState({
-        //     newStrengthArticle: {
-        //         article_title: '',
-        //         article_url: '',
-        //         exercise_category: '',
-        //         date_posted: '',
-        //         up_likes: '',
-        //         down_likes: '',
-        //     }
-        // })
+        this.setState({
+            newStrengthArticle: {
+                article_title: '',
+                article_url: '',
+                exercise_category: '',
+                date_posted: '',
+            }
+        })
     }
 
     render() {
-        
+        console.log('this.state after render', this.state);
         let content = null;
 
         if (this.props.user.userName) {
@@ -92,9 +83,13 @@ class StrengthPage extends Component {
                         <input className="input" onChange={this.handleChange('exercise_category')} value={this.state.newStrengthArticle.exercise_category} placeholder='Exercise Category' />
                         <input className="button" type="submit" value="Post article" />
                     </form>
-                    {JSON.stringify(this.state.newStrengthArticle)}
                     <div>
                         <ul>
+                            {this.state.newStrengthArticle.map(article => 
+                               <StrengthItems key={article.id}
+                               article={article}
+                                />
+                            )}
                         </ul>
                     </div>
                 </div>

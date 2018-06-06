@@ -102,7 +102,7 @@ router.get('/yoga', (req, res) => {
  */
 router.post('/strength', (req, res) => {
     console.log('POST route');
-    // if(req.isAuthenticated()) {
+    if(req.isAuthenticated()) {
         let queryText = `INSERT INTO "article_table" ("title", "link", "study_details", "date_posted", "article_type", "user_id")
                         VALUES ($1, $2, $3, $4, $5, $6)`;
         pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id])
@@ -113,27 +113,10 @@ router.post('/strength', (req, res) => {
             res.sendStatus(500);
             console.log('error on strength post', error)
         })
-    // } else {
-    //     res.sendStatus(403);
-    // }
+    } else {
+        res.sendStatus(403);
+    }
 });
 
-// router.post('/', (req, res) => {
-//     console.log('POST route');
-//     if (req.isAuthenticated()) {
-//         let queryText = `INSERT INTO "item" ("description", "image_url", "person_id")
-//                         VALUES ($1, $2, $3)`;
-//         pool.query(queryText, [req.body.description, req.body.image_url, req.user.id])
-//             .then((result) => {
-//                 res.sendStatus(201);
-//             })
-//             .catch((error) => {
-//                 res.sendStatus(500);
-//                 console.log('error on POST: ', error)
-//             })
-//     } else {
-//         res.sendStatus(403);
-//     }
-// });
 
 module.exports = router;
