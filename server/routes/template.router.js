@@ -44,10 +44,13 @@ router.get('/strength', (req, res) => {
 router.get('/aerobic', (req, res) => {
     console.log('GET all aerobic training articles route');
     if(req.isAuthenticated()) {
-        let queryText = `SELECT * FROM "person"
-                        JOIN "article_table" ON "article_table"."user_id" = "person"."id"
-                        JOIN "likes_table" ON "likes_table"."article_id" = "article_table"."id"
-                        WHERE "article_table"."article_type" = 'aerobic training';`;
+        // let queryText = `SELECT * FROM "person"
+        //                 JOIN "article_table" ON "article_table"."user_id" = "person"."id"
+        //                 JOIN "likes_table" ON "likes_table"."article_id" = "article_table"."id"
+        //                 WHERE "article_table"."article_type" = 'aerobic training';`;
+        let queryText = `SELECT * FROM "article_table"
+                        WHERE "article_table"."article_type" = 'aerobic training';`
+
         pool.query(queryText)
         .then((result) => {
             res.send(result.rows);
@@ -114,6 +117,24 @@ router.post('/strength', (req, res) => {
         .catch((error) => {
             res.sendStatus(500);
             console.log('error on strength post', error)
+        })
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+router.post('/aerobic', (req, res) => {
+    console.log('POST route');
+    if(req.isAuthenticated()) {
+        let queryText = `INSERT INTO "article_table" ("title", "link", "study_details", "date_posted", "article_type", "user_id")
+                        VALUES ($1, $2, $3, $4, $5, $6)`;
+        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id])
+        .then((result) => {
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            res.sendStatus(500);
+            console.log('error on aerobic post', error)
         })
     } else {
         res.sendStatus(403);

@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 class StrengthPage extends Component {
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             newStrengthArticle: {
                 title: '',
                 link: '',
@@ -26,7 +26,7 @@ class StrengthPage extends Component {
                 user_id: '',
             },
             allStrengthArticles: [],
-        }        
+        }
     }
 
     handleChange = propertyName => event => {
@@ -34,7 +34,7 @@ class StrengthPage extends Component {
             newStrengthArticle: {
                 ...this.state.newStrengthArticle,
                 [propertyName]: event.target.value,
-        }
+            }
         });
         console.log('event.target.value', event.target.value)
     }
@@ -98,14 +98,14 @@ class StrengthPage extends Component {
                         <input className="input" onChange={this.handleChange('article_type')} value={this.state.newStrengthArticle.article_type} placeholder='Exercise Category' />
                         <input className="input" onChange={this.handleChange('study_details')} value={this.state.newStrengthArticle.study_details} placeholder='Study details here' />
                         <input className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
-                        {/* <input className="input" onChange={this.handleChange('user_id')} value={this.state.newStrengthArticle.user_id} placeholder='user_id' /> */}
+                        <input className="input" onChange={this.handleChange('user_id')} value={this.state.newStrengthArticle.user_id} placeholder='user_id' />
                         <input className="button" type="submit" value="Post article" />
                     </form>
                     <div>
                         <ul>
-                            {this.state.allStrengthArticles.map(article => 
-                               <StrengthItems key={article.id}
-                               article={article}
+                            {this.state.allStrengthArticles.map(article =>
+                                <StrengthItems key={article.id}
+                                    article={article}
                                 />
                             )}
                         </ul>

@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-class StrengthItems extends Component {
+class AerobicItems extends Component {
 
 
     render() {
@@ -44,5 +44,5 @@ class StrengthItems extends Component {
 
 }
 
-export default connect(mapStateToProps)(StrengthItems);
+export default connect(mapStateToProps)(AerobicItems);
 
