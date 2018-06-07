@@ -85,7 +85,7 @@ class AerobicPage extends Component {
                         <input className="input" onChange={this.handleChange('link')} value={this.state.newAerobicArticle.article_url} placeholder='Article url here' />
                         <input className="input" onChange={this.handleChange('article_type')} value={this.state.newAerobicArticle.article_type} placeholder='Exercise Category' />
                         <input className="input" onChange={this.handleChange('study_details')} value={this.state.newAerobicArticle.study_details} placeholder='Study details here' />
-                        <input className="input" onChange={this.handleChange('date_posted')} value={this.state.newAerobicArticle.date_posted} placeholder='Date posted' />
+                        <input type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newAerobicArticle.date_posted} placeholder='Date posted' />
                         <input className="input" onChange={this.handleChange('user_id')} value={this.state.newAerobicArticle.user_id} placeholder='user_id' />
 
                         {/* <button>Vote up</button>

@@ -50,6 +50,12 @@ class StrengthPage extends Component {
         }
     }
 
+    // votesButton() {
+    //     this.setState({
+    //         votes: ++this.state.votes
+    //     })
+    // }
+
     getStrengthArticles = () => {
         axios.get('/api/articles/strength').then((response) => {
             console.log('GET strengths articles response.data', response.data);
@@ -71,15 +77,15 @@ class StrengthPage extends Component {
         }).catch(error => {
             console.log('error on strengths articles post', error);
         })
-        // this.setState({
-        //     newStrengthArticle: {
-        //         article_title: '',
-        //         article_url: '',
-        //         exercise_category: '',
-        //         study_details: '',
-        //         date_posted: '',
-        //     }
-        // })
+        this.setState({
+            newStrengthArticle: {
+                article_title: '',
+                article_url: '',
+                exercise_category: '',
+                study_details: '',
+                date_posted: '',
+            }
+        })
     }
 
     render() {
@@ -97,9 +103,10 @@ class StrengthPage extends Component {
                         <input className="input" onChange={this.handleChange('link')} value={this.state.newStrengthArticle.link} placeholder='Article url here' />
                         <input className="input" onChange={this.handleChange('article_type')} value={this.state.newStrengthArticle.article_type} placeholder='Exercise Category' />
                         <input className="input" onChange={this.handleChange('study_details')} value={this.state.newStrengthArticle.study_details} placeholder='Study details here' />
-                        <input className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
+                        <input type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
                         <input className="input" onChange={this.handleChange('user_id')} value={this.state.newStrengthArticle.user_id} placeholder='user_id' />
                         <input className="button" type="submit" value="Post article" />
+                        {/* <button onClick={this.votesButton}>Votes</button> */}
                     </form>
                     <div>
                         <ul>

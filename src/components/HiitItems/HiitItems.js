@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-class StrengthItems extends Component {
+class HiitItems extends Component {
 
 
     render() {
@@ -37,7 +37,7 @@ class StrengthItems extends Component {
                 Study details: {this.props.article.study_details}<br/>
                 Date posted: {this.props.article.date_posted}<br/>
                 Delete article: <button>Delete</button><br/>
-                <Link to="/strength/comments">See comments</Link>
+                <Link to="/hiit/comments">See comments</Link>
                 </p>
                 
             </div>
@@ -48,5 +48,4 @@ class StrengthItems extends Component {
 
 }
 
-export default connect(mapStateToProps)(StrengthItems);
-
+export default connect(mapStateToProps)(HiitItems);

@@ -15,6 +15,7 @@ import StrengthPage from './components/StrengthPage/StrengthPage';
 import AerobicPage from './components/AerobicPage/AerobicPage';
 import HIIT from './components/HIIT/HIIT';
 import YogaPage from './components/YogaPage/YogaPage';
+import StrengthComments from './components/StrengthComments/StrengthComments';
 
 import './styles/main.css';
 
@@ -55,6 +56,11 @@ const App = () => (
         <Route 
           path="/yoga"
           component={YogaPage}
+        />
+
+        <Route
+          path="/strength/comments"
+          component={StrengthComments}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
