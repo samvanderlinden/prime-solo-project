@@ -70,7 +70,7 @@ router.get('/hiit', (req, res) => {
         //                 JOIN "article_table" ON "article_table"."user_id" = "person"."id"
         //                 JOIN "likes_table" ON "likes_table"."article_id" = "article_table"."id"
         //                 WHERE "article_table"."article_type" = 'high intensity interval training';`;
-            let queryText = `SELECT * FROM "article_table"
+        let queryText = `SELECT * FROM "article_table"
                         WHERE "article_table"."article_type" = 'high intensity interval training';`
         pool.query(queryText)
             .then((result) => {
@@ -87,10 +87,12 @@ router.get('/hiit', (req, res) => {
 router.get('/yoga', (req, res) => {
     console.log('GET all yoga training articles route');
     if (req.isAuthenticated()) {
-        let queryText = `SELECT * FROM "person"
-                        JOIN "article_table" ON "article_table"."user_id" = "person"."id"
-                        JOIN "likes_table" ON "likes_table"."article_id" = "article_table"."id"
-                        WHERE "article_table"."article_type" = 'yoga training';`;
+        // let queryText = `SELECT * FROM "person"
+        //                 JOIN "article_table" ON "article_table"."user_id" = "person"."id"
+        //                 JOIN "likes_table" ON "likes_table"."article_id" = "article_table"."id"
+        //                 WHERE "article_table"."article_type" = 'yoga training';`;
+        let queryText = `SELECT * FROM "article_table"
+                        WHERE "article_table"."article_type" = 'yoga';`
         pool.query(queryText)
             .then((result) => {
                 res.send(result.rows);
@@ -155,6 +157,24 @@ router.post('/hiit', (req, res) => {
             .catch((error) => {
                 res.sendStatus(500);
                 console.log('error on hiit post', error)
+            })
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+router.post('/yoga', (req, res) => {
+    console.log('POST route');
+    if (req.isAuthenticated()) {
+        let queryText = `INSERT INTO "article_table" ("title", "link", "study_details", "date_posted", "article_type", "user_id")
+                        VALUES ($1, $2, $3, $4, $5, $6)`;
+        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id])
+            .then((result) => {
+                res.sendStatus(201);
+            })
+            .catch((error) => {
+                res.sendStatus(500);
+                console.log('error on yoga post', error)
             })
     } else {
         res.sendStatus(403);
