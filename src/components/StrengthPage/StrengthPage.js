@@ -90,6 +90,18 @@ class StrengthPage extends Component {
         })
     }
 
+    deleteArticle = article => {
+        axios.delete('/api/articles/strength', {params: {id: article.id, user_id: article.user_id}})
+        .then((response) => {
+            console.log('strengths delete response', response);
+            this.getStrengthArticles();
+        })
+        .catch((error) => {
+            console.log('error on delete strength article:', error);
+            alert('You can only delete the articles you added');
+        })
+    }
+
     render() {
         console.log('this.state after render', this.state);
         let content = null;
@@ -115,6 +127,7 @@ class StrengthPage extends Component {
                             {this.state.allStrengthArticles.map(article =>
                                 <StrengthItems key={article.id}
                                     article={article}
+                                    delete={this.deleteArticle}
                                 />
                             )}
                         </ul>

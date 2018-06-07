@@ -16,18 +16,6 @@ class YogaItems extends Component {
 
 
     render() {
-        
-        // let content = null;
-
-        // if (this.props.user.userName) {
-        //     content = (
-        //         <div>
-        //             <p>New article:{this.props.article_title}</p>
-        //             {JSON.stringify(this.props)}
-        //         </div>
-        //     );
-        // }
-
         return (
             <div>
                 <p>

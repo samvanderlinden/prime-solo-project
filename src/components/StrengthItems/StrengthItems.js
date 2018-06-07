@@ -14,20 +14,7 @@ const mapStateToProps = state => ({
 
 class StrengthItems extends Component {
 
-
     render() {
-        
-        // let content = null;
-
-        // if (this.props.user.userName) {
-        //     content = (
-        //         <div>
-        //             <p>New article:{this.props.article_title}</p>
-        //             {JSON.stringify(this.props)}
-        //         </div>
-        //     );
-        // }
-
         return (
             <div>
                 <p>
@@ -36,7 +23,8 @@ class StrengthItems extends Component {
                 Exercise type: {this.props.article.article_type}<br/>
                 Study details: {this.props.article.study_details}<br/>
                 Date posted: {this.props.article.date_posted}<br/>
-                Delete article: <button>Delete</button><br/>
+                User id: {this.props.article.user_id}<br/>
+                Delete article: <button onClick={() => this.props.delete(this.props.article)}>Delete</button><br/>
                 <Link to="/strength/comments">See comments</Link>
                 </p>
                 
