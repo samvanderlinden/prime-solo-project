@@ -42,9 +42,20 @@ class AerobicPage extends Component {
         console.log('post button clicked');
         console.log('addNewAerobicArticle', this.state.newAerobicArticle);
         axios.post('/api/articles/strength', this.state.newAerobicArticle).then(response => {
+            this.getAerobicArticles();
             console.log('addNewAerobicArticle response', response);
         }).catch(error => {
             console.log('error on strengths articles post', error);
+        })
+        this.setState({
+            newAerobicArticle: {
+            title: '',
+            link: '',
+            article_type: '',
+            study_details: '',
+            date_posted: '',
+            user_id: '',
+            }
         })
     }
 

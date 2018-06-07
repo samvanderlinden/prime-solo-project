@@ -74,16 +74,18 @@ class StrengthPage extends Component {
         console.log('addNewStrengthArticle', this.state.newStrengthArticle);
         axios.post('/api/articles/strength', this.state.newStrengthArticle).then(response => {
             console.log(response);
+            this.getStrengthArticles();
         }).catch(error => {
             console.log('error on strengths articles post', error);
         })
         this.setState({
             newStrengthArticle: {
-                article_title: '',
-                article_url: '',
-                exercise_category: '',
+                title: '',
+                link: '',
+                article_type: '',
                 study_details: '',
                 date_posted: '',
+                user_id: '',
             }
         })
     }
@@ -128,9 +130,6 @@ class StrengthPage extends Component {
             </div>
         );
     }
-
-
-
 }
 
 export default connect(mapStateToProps)(StrengthPage);

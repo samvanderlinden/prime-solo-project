@@ -66,17 +66,19 @@ class HIIT extends Component {
         console.log('post button clicked');
         console.log('addNewHiitArticle', this.state.newHiitArticle);
         axios.post('/api/articles/hiit', this.state.newHiitArticle).then(response => {
+            this.getHiitArticles();
             console.log(response);
         }).catch(error => {
             console.log('error on strengths articles post', error);
         })
         this.setState({
             newHiitArticle: {
-                article_title: '',
-                article_url: '',
-                exercise_category: '',
+                title: '',
+                link: '',
+                article_type: '',
                 study_details: '',
                 date_posted: '',
+                user_id: '',
             }
         })
     }

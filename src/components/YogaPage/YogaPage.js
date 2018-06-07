@@ -68,16 +68,18 @@ class YogaPage extends Component {
         console.log('addNewYogaArticle', this.state.newYogaArticle);
         axios.post('/api/articles/yoga', this.state.newYogaArticle).then(response => {
             console.log(response);
+            this.getYogaArticles();
         }).catch(error => {
             console.log('error on yoga articles post', error);
         })
         this.setState({
             newYogaArticle: {
-                article_title: '',
-                article_url: '',
-                exercise_category: '',
+                title: '',
+                link: '',
+                article_type: '',
                 study_details: '',
                 date_posted: '',
+                user_id: '',
             }
         })
     }
@@ -120,8 +122,6 @@ class YogaPage extends Component {
             </div>
         );
     }
-
-
 }
 
 export default connect(mapStateToProps)(YogaPage);
