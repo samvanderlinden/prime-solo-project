@@ -17,7 +17,15 @@ class StrengthPage extends Component {
     constructor(props) {
         super(props);
         this.state={
-            newStrengthArticle: [],
+            newStrengthArticle: {
+                title: '',
+                link: '',
+                article_type: '',
+                study_details: '',
+                date_posted: '',
+                user_id: '',
+            },
+            allStrengthArticles: [],
         }        
     }
 
@@ -26,7 +34,7 @@ class StrengthPage extends Component {
             newStrengthArticle: {
                 ...this.state.newStrengthArticle,
                 [propertyName]: event.target.value,
-            }
+        }
         });
         console.log('event.target.value', event.target.value)
     }
@@ -46,7 +54,7 @@ class StrengthPage extends Component {
         axios.get('/api/articles/strength').then((response) => {
             console.log('GET strengths articles response.data', response.data);
             this.setState({
-                newStrengthArticle: response.data
+                allStrengthArticles: response.data
             })
         })
             .catch((error) => {
@@ -56,15 +64,22 @@ class StrengthPage extends Component {
 
     addNewStrengthArticle = event => {
         event.preventDefault();
+        console.log('post button clicked');
         console.log('addNewStrengthArticle', this.state.newStrengthArticle);
-        this.setState({
-            newStrengthArticle: {
-                article_title: '',
-                article_url: '',
-                exercise_category: '',
-                date_posted: '',
-            }
+        axios.post('/api/articles/strength', this.state.newStrengthArticle).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log('error on strengths articles post', error);
         })
+        // this.setState({
+        //     newStrengthArticle: {
+        //         article_title: '',
+        //         article_url: '',
+        //         exercise_category: '',
+        //         study_details: '',
+        //         date_posted: '',
+        //     }
+        // })
     }
 
     render() {
@@ -78,14 +93,17 @@ class StrengthPage extends Component {
                         Strength Training Page
                     </p>
                     <form onSubmit={this.addNewStrengthArticle}>
-                        <input className="input" onChange={this.handleChange('article_title')} value={this.state.newStrengthArticle.article_title} placeholder='Article Title' />
-                        <input className="input" onChange={this.handleChange('article_url')} value={this.state.newStrengthArticle.article_url} placeholder='Article url here' />
-                        <input className="input" onChange={this.handleChange('exercise_category')} value={this.state.newStrengthArticle.exercise_category} placeholder='Exercise Category' />
+                        <input className="input" onChange={this.handleChange('title')} value={this.state.newStrengthArticle.title} placeholder='Article Title' />
+                        <input className="input" onChange={this.handleChange('link')} value={this.state.newStrengthArticle.link} placeholder='Article url here' />
+                        <input className="input" onChange={this.handleChange('article_type')} value={this.state.newStrengthArticle.article_type} placeholder='Exercise Category' />
+                        <input className="input" onChange={this.handleChange('study_details')} value={this.state.newStrengthArticle.study_details} placeholder='Study details here' />
+                        <input className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
+                        {/* <input className="input" onChange={this.handleChange('user_id')} value={this.state.newStrengthArticle.user_id} placeholder='user_id' /> */}
                         <input className="button" type="submit" value="Post article" />
                     </form>
                     <div>
                         <ul>
-                            {this.state.newStrengthArticle.map(article => 
+                            {this.state.allStrengthArticles.map(article => 
                                <StrengthItems key={article.id}
                                article={article}
                                 />

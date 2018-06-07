@@ -31,6 +31,7 @@ class StrengthItems extends Component {
             <div>
                 New article: {this.props.article.title} <br/>
                 Article url: <a href="{this.props.article.link}">{this.props.article.link}</a><br/>
+                Exercise type: {this.props.article.article_type}<br/>
                 Study details: {this.props.article.study_details}<br/>
                 Date posted: {this.props.article.date_posted}<br/>
             </div>
