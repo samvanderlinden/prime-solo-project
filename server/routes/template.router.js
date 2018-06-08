@@ -28,7 +28,11 @@ router.get('/strength', (req, res) => {
         //                 JOIN "likes_table" ON "likes_table"."article_id" = "article_table"."id"
         //                 WHERE "article_table"."article_type" = 'strength training';`;
         let queryText = `SELECT * FROM "article_table"
-                        WHERE "article_table"."article_type" = 'strength training';`
+                         WHERE "article_table"."article_type" = 'strength training';`
+        // let queryText=`SELECT * FROM "person"
+        // JOIN "article_table" ON "article_table"."user_id" = "person"."id"
+        // WHERE "article_table"."article_type" = 'strength training';`
+
         pool.query(queryText)
             .then((result) => {
                 res.send(result.rows);

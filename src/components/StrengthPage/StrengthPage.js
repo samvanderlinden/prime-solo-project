@@ -7,6 +7,10 @@ import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 import axios from 'axios';
 import StrengthItems from '../StrengthItems/StrengthItems';
+import TextField from '@material-ui/core/TextField';
+import AddIcon from '@material-ui/icons/Add';
+import Icon from '@material-ui/core/Icon';
+import Button from '@material-ui/core/Button';
 
 
 const mapStateToProps = state => ({
@@ -24,6 +28,7 @@ class StrengthPage extends Component {
                 study_details: '',
                 date_posted: '',
                 user_id: '',
+                // username_name: '',
             },
             allStrengthArticles: [],
         }
@@ -86,6 +91,7 @@ class StrengthPage extends Component {
                 study_details: '',
                 date_posted: '',
                 user_id: '',
+                // username_name: '',
             }
         })
     }
@@ -113,13 +119,15 @@ class StrengthPage extends Component {
                         Strength Training Page
                     </p>
                     <form onSubmit={this.addNewStrengthArticle}>
-                        <input className="input" onChange={this.handleChange('title')} value={this.state.newStrengthArticle.title} placeholder='Article Title' />
-                        <input className="input" onChange={this.handleChange('link')} value={this.state.newStrengthArticle.link} placeholder='Article url here' />
-                        <input className="input" onChange={this.handleChange('article_type')} value={this.state.newStrengthArticle.article_type} placeholder='Exercise Category' />
+                        <TextField className="input" onChange={this.handleChange('title')} value={this.state.newStrengthArticle.title} placeholder='Article Title' />
+                        <TextField className="input" onChange={this.handleChange('link')} value={this.state.newStrengthArticle.link} placeholder='Article url here' />
+                        <TextField className="input" onChange={this.handleChange('article_type')} value={this.state.newStrengthArticle.article_type} placeholder='Exercise Category' />
                         <input className="input" onChange={this.handleChange('study_details')} value={this.state.newStrengthArticle.study_details} placeholder='Study details here' />
-                        <input type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
-                        <input className="input" onChange={this.handleChange('user_id')} value={this.state.newStrengthArticle.user_id} placeholder='user_id' />
-                        <input className="button" type="submit" value="Post article" />
+                        <TextField type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
+                        {/* <input className="input" onChange={this.handleChange('username_name')} value={this.state.newStrengthArticle.username_name} placeholder='username' /> */}
+                        <TextField className="input" onChange={this.handleChange('user_id')} value={this.state.newStrengthArticle.user_id} placeholder='user_id' />
+                        {/* <input className="button" type="submit" value="Post article" /> */}
+                        <Button type="submit" variant="fab" mini color="primary" aria-label="add"><AddIcon/></Button>
                         {/* <button onClick={this.votesButton}>Votes</button> */}
                     </form>
                     <div>

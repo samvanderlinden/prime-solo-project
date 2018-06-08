@@ -14,6 +14,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import moment from 'moment';
 
 const styles = {
   card: {
@@ -49,15 +51,22 @@ class StrengthItems extends Component {
             <div>
                 <Card>
                 <CardContent>
+                  <Typography variant="headline" component="h1">
                 New article: {this.props.article.title} <br/>
-                Article url: <a href="{this.props.article.link}">{this.props.article.link}</a><br/>
-                Exercise type: {this.props.article.article_type}<br/>
-                Study details: {this.props.article.study_details}<br/>
-                Date posted: {this.props.article.date_posted}<br/>
-                User id: {this.props.article.user_id}<br/>
-                Delete article: <button onClick={() => this.props.delete(this.props.article)}>Delete</button><br/>
+                </Typography>
+                Article source <a href="{this.props.article.link}">{this.props.article.link}</a><br/>
+                Exercise type {this.props.article.article_type}<br/>
+                Study details {this.props.article.study_details}<br/>
+                Date posted {moment(this.props.article.date_posted).format('MMMM Do YYYY')}<br/>
+                User id {this.props.article.user_id}<br/>
+                {/* username: {this.props.article.username_name}<br/> */}
                 <Link to="/strength/comments">See comments</Link>
                 </CardContent>
+                <CardActions>
+                <Button variant="contained" color="secondary" size="small" onClick={() => this.props.delete(this.props.article)}>Delete article</Button><br/>
+                </CardActions>
+                
+                
                 </Card>       
             </div>
         );

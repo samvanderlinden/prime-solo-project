@@ -11,6 +11,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
+
 .instructions h1 {
     font-size: 24px;
     font-weight: 700;
@@ -61,7 +62,7 @@ input[type="submit"] {
 }
 
 .navbar {
-  /* background-color: #00acb0; */
+  background-color: #00acb0;
   width: 100%;
   border-radius: 0px;
 }
