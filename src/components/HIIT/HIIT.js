@@ -83,6 +83,18 @@ class HIIT extends Component {
         })
     }
 
+    deleteArticle = article => {
+        axios.delete('/api/articles/hiit', {params: {id: article.id, user_id: article.user_id}})
+        .then((response) => {
+            console.log('hiit delete response', response);
+            this.getHiitArticles();
+        })
+        .catch((error) => {
+            console.log('error on delete hiit article:', error);
+            alert('You can only delete the articles you added');
+        })
+    }
+
     render() {
         let content = null;
 
@@ -106,6 +118,7 @@ class HIIT extends Component {
                             {this.state.allHiitArticles.map(article =>
                                 <HiitItems key={article.id}
                                     article={article}
+                                    delete={this.deleteArticle}
                                 />
                             )}
                         </ul>

@@ -84,6 +84,18 @@ class YogaPage extends Component {
         })
     }
 
+    deleteArticle = article => {
+        axios.delete('/api/articles/yoga', {params: {id: article.id, user_id: article.user_id}})
+        .then((response) => {
+            console.log('yoga delete response', response);
+            this.getYogaArticles();
+        })
+        .catch((error) => {
+            console.log('error on delete yoga article:', error);
+            alert('You can only delete the articles you added');
+        })
+    }
+
     render() {
         let content = null;
 
@@ -107,6 +119,7 @@ class YogaPage extends Component {
                             {this.state.allYogaArticles.map(article =>
                                 <YogaItems key={article.id}
                                     article={article}
+                                    delete={this.deleteArticle}
                                 />
                             )}
                         </ul>

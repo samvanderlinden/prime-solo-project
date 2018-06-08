@@ -199,5 +199,56 @@ router.delete('/strength', (req, res) => {
     }
 });
 
+router.delete('/aerobic', (req, res) => {
+    console.log('DELETE aerobic article route');
+    if (req.isAuthenticated() && req.query.user_id == req.user.id) {
+        let queryText = `DELETE FROM "article_table" WHERE "id" = $1`;
+        pool.query(queryText, [req.query.id])
+            .then((result) => {
+                res.sendStatus(200)
+            })
+            .catch((error) => {
+                console.log('error on DELETE: ', error)
+                res.sendStatus(500);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+router.delete('/hiit', (req, res) => {
+    console.log('DELETE hiit article route');
+    if (req.isAuthenticated() && req.query.user_id == req.user.id) {
+        let queryText = `DELETE FROM "article_table" WHERE "id" = $1`;
+        pool.query(queryText, [req.query.id])
+            .then((result) => {
+                res.sendStatus(200)
+            })
+            .catch((error) => {
+                console.log('error on DELETE: ', error)
+                res.sendStatus(500);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+router.delete('/yoga', (req, res) => {
+    console.log('DELETE yoga article route');
+    if (req.isAuthenticated() && req.query.user_id == req.user.id) {
+        let queryText = `DELETE FROM "article_table" WHERE "id" = $1`;
+        pool.query(queryText, [req.query.id])
+            .then((result) => {
+                res.sendStatus(200)
+            })
+            .catch((error) => {
+                console.log('error on DELETE: ', error)
+                res.sendStatus(500);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+});
+
 
 module.exports = router;

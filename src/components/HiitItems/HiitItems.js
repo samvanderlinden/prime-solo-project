@@ -23,7 +23,8 @@ class HiitItems extends Component {
                 Exercise type: {this.props.article.article_type}<br/>
                 Study details: {this.props.article.study_details}<br/>
                 Date posted: {this.props.article.date_posted}<br/>
-                Delete article: <button>Delete</button><br/>
+                user_id: {this.props.article.user_id}<br/>
+                Delete article: <button onClick={() => this.props.delete(this.props.article)}>Delete</button><br/>
                 <Link to="/hiit/comments">See comments</Link>
                 </p>
                 

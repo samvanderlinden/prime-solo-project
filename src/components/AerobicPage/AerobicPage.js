@@ -82,6 +82,18 @@ class AerobicPage extends Component {
             })
     }
 
+    deleteArticle = article => {
+        axios.delete('/api/articles/aerobic', {params: {id: article.id, user_id: article.user_id}})
+        .then((response) => {
+            console.log('aerobic delete response', response);
+            this.getAerobicArticles();
+        })
+        .catch((error) => {
+            console.log('error on aerobic article:', error);
+            alert('You can only delete the articles you added');
+        })
+    }
+
     render() {
         let content = null;
 
@@ -108,6 +120,7 @@ class AerobicPage extends Component {
                             {this.state.allAerobicArticles.map(article =>
                                 <AerobicItems key={article.id}
                                     article={article}
+                                    delete={this.deleteArticle}
                                 />
                             )}
                         </ul>

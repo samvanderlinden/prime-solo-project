@@ -17,10 +17,13 @@ import HIIT from './components/HIIT/HIIT';
 import YogaPage from './components/YogaPage/YogaPage';
 import StrengthComments from './components/StrengthComments/StrengthComments';
 
+
 import './styles/main.css';
+
 
 const App = () => (
   <div>
+    
     <Header title="FitnessRx" />
     <Router>
       <Switch>
