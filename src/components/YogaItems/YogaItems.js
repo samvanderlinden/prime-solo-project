@@ -6,6 +6,7 @@ import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 
 const mapStateToProps = state => ({
@@ -23,7 +24,7 @@ class YogaItems extends Component {
                 Article url: <a href="{this.props.article.link}">{this.props.article.link}</a><br/>
                 Exercise type: {this.props.article.article_type}<br/>
                 Study details: {this.props.article.study_details}<br/>
-                Date posted: {this.props.article.date_posted}<br/>
+                Date posted: {moment(this.props.article.date_posted).format('MMMM Do YYYY')}<br/>
                 User id: {this.props.article.user_id}<br/>
                 Delete article: <button onClick={() => this.props.delete(this.props.article)}>Delete</button><br/>
                 <Link to="/yoga/comments">See comments</Link>
