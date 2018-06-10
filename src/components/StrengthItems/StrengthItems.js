@@ -19,7 +19,9 @@ import moment from 'moment';
 
 const styles = {
   card: {
-    minWidth: 275,
+    maxWidth: 375,
+    marginBottom: 112,
+    display: 'inline-flex',
   },
   bullet: {
     display: 'inline-block',
@@ -41,40 +43,46 @@ const styles = {
 
 
 const mapStateToProps = state => ({
-    user: state.user,
+  user: state.user,
 });
 
 class StrengthItems extends Component {
+  
 
-    render() {
-        return (
-            <div>
-                <Card>
-                <CardContent>
-                  <Typography variant="headline" component="h1">
-                New article: {this.props.article.title} <br/>
-                </Typography>
-                Article source <a href="{this.props.article.link}">{this.props.article.link}</a><br/>
-                Exercise type {this.props.article.article_type}<br/>
-                Study details {this.props.article.study_details}<br/>
-                Date posted {moment(this.props.article.date_posted).format('MMMM Do YYYY')}<br/>
-                User id {this.props.article.user_id}<br/>
-                {/* username: {this.props.article.username_name}<br/> */}
-                <Link to="/strength/comments">See comments</Link>
-                </CardContent>
-                <CardActions>
-                <Button variant="contained" color="secondary" size="small" onClick={() => this.props.delete(this.props.article)}>Delete article</Button><br/>
-                </CardActions>
-                
-                
-                </Card>       
-            </div>
-        );
-    }
-
-
+  render() {
+    const{classes} = this.props;
+    return (
+      <div>
+        <Card className={classes.card}>
+          <CardContent>
+            <Typography variant="headline" component="h1">
+              New article: {this.props.article.title} <br />
+            </Typography>
+            Article source <a href="{this.props.article.link}">{this.props.article.link}</a><br />
+            Exercise type {this.props.article.article_type}<br />
+            Study details {this.props.article.study_details}<br />
+            Date posted {moment(this.props.article.date_posted).format('MMMM Do YYYY')}<br />
+            {/* User id {this.props.article.user_id}<br/> */}
+            {/* username: {this.props.article.username_name}<br/> */}
+            <Link to="/strength/comments">See comments</Link>
+          </CardContent>
+          <CardActions>
+            <Button variant="contained" color="secondary" size="small" onClick={() => this.props.delete(this.props.article)}>Delete article</Button><br />
+          </CardActions>
+        </Card>
+      </div>
+      // <div>
+      //   <StrengthCard />
+      // </div>
+    );
+  }
 
 }
+StrengthItems.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-export default connect(mapStateToProps)(StrengthItems);
+// export default withStyles(styles)(SimpleCard);
+
+export default connect(mapStateToProps)(withStyles(styles)(StrengthItems));
 

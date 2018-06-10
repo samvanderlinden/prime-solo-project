@@ -11,6 +11,13 @@ import TextField from '@material-ui/core/TextField';
 import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import '../../styles/main.css';
 
 
 const mapStateToProps = state => ({
@@ -27,7 +34,7 @@ class StrengthPage extends Component {
                 article_type: '',
                 study_details: '',
                 date_posted: '',
-                user_id: '',
+                // user_id: '',
                 // username_name: '',
             },
             allStrengthArticles: [],
@@ -90,22 +97,22 @@ class StrengthPage extends Component {
                 article_type: '',
                 study_details: '',
                 date_posted: '',
-                user_id: '',
+                // user_id: '',
                 // username_name: '',
             }
         })
     }
 
     deleteArticle = article => {
-        axios.delete('/api/articles/strength', {params: {id: article.id, user_id: article.user_id}})
-        .then((response) => {
-            console.log('strengths delete response', response);
-            this.getStrengthArticles();
-        })
-        .catch((error) => {
-            console.log('error on delete strength article:', error);
-            alert('You can only delete the articles you added');
-        })
+        axios.delete('/api/articles/strength', { params: { id: article.id, user_id: article.user_id } })
+            .then((response) => {
+                console.log('strengths delete response', response);
+                this.getStrengthArticles();
+            })
+            .catch((error) => {
+                console.log('error on delete strength article:', error);
+                alert('You can only delete the articles you added');
+            })
     }
 
     render() {
@@ -120,14 +127,35 @@ class StrengthPage extends Component {
                     </p>
                     <form onSubmit={this.addNewStrengthArticle}>
                         <TextField className="input" onChange={this.handleChange('title')} value={this.state.newStrengthArticle.title} placeholder='Article Title' />
+                        <br />
                         <TextField className="input" onChange={this.handleChange('link')} value={this.state.newStrengthArticle.link} placeholder='Article url here' />
-                        <TextField className="input" onChange={this.handleChange('article_type')} value={this.state.newStrengthArticle.article_type} placeholder='Exercise Category' />
-                        <input className="input" onChange={this.handleChange('study_details')} value={this.state.newStrengthArticle.study_details} placeholder='Study details here' />
+                        <br />
+                        <FormControl>
+                            {/* <InputLabel>Exercise</InputLabel> */}
+                            <Select
+                                value={this.state.newStrengthArticle.article_type}
+                                onChange={this.handleChange('article_type')}
+                                displayEmpty
+                            >
+                                <MenuItem value={'strength training'}>Strength Training</MenuItem>
+                                <MenuItem value={'aerobic training'}>Aerobic Training</MenuItem>
+                                <MenuItem value={'high intensity interval training'}>High Intensity Interval Training</MenuItem>
+                                <MenuItem value={'yoga'}>Yoga</MenuItem>
+
+                            </Select>
+                        </FormControl>
+                        <br />
+                        <TextField
+                            multiline={true}
+                            rows={4}
+                            className="input" onChange={this.handleChange('study_details')} value={this.state.newStrengthArticle.study_details} placeholder='Study details here' />
+                        <br />
                         <TextField type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
+                        <br />
                         {/* <input className="input" onChange={this.handleChange('username_name')} value={this.state.newStrengthArticle.username_name} placeholder='username' /> */}
-                        <TextField className="input" onChange={this.handleChange('user_id')} value={this.state.newStrengthArticle.user_id} placeholder='user_id' />
+                        {/* <TextField className="input" onChange={this.handleChange('user_id')} value={this.state.newStrengthArticle.user_id} placeholder='user_id' /> */}
                         {/* <input className="button" type="submit" value="Post article" /> */}
-                        <Button type="submit" variant="fab" mini color="primary" aria-label="add"><AddIcon/></Button>
+                        <Button type="submit" variant="fab" mini color="primary" aria-label="add"><AddIcon /></Button>
                         {/* <button onClick={this.votesButton}>Votes</button> */}
                     </form>
                     <div>
