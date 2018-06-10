@@ -115,7 +115,7 @@ router.post('/strength', (req, res) => {
     if (req.isAuthenticated()) {
         let queryText = `INSERT INTO "article_table" ("title", "link", "study_details", "date_posted", "article_type", "user_id")
                         VALUES ($1, $2, $3, $4, $5, $6)`;
-        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id])
+        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.user.id])
             .then((result) => {
                 res.sendStatus(201);
             })
@@ -133,7 +133,7 @@ router.post('/aerobic', (req, res) => {
     if (req.isAuthenticated()) {
         let queryText = `INSERT INTO "article_table" ("title", "link", "study_details", "date_posted", "article_type", "user_id")
                         VALUES ($1, $2, $3, $4, $5, $6)`;
-        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id])
+        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.user.id])
             .then((result) => {
                 res.sendStatus(201);
             })
@@ -151,7 +151,7 @@ router.post('/hiit', (req, res) => {
     if (req.isAuthenticated()) {
         let queryText = `INSERT INTO "article_table" ("title", "link", "study_details", "date_posted", "article_type", "user_id")
                         VALUES ($1, $2, $3, $4, $5, $6)`;
-        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id])
+        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.user.id])
             .then((result) => {
                 res.sendStatus(201);
             })
@@ -169,7 +169,7 @@ router.post('/yoga', (req, res) => {
     if (req.isAuthenticated()) {
         let queryText = `INSERT INTO "article_table" ("title", "link", "study_details", "date_posted", "article_type", "user_id")
                         VALUES ($1, $2, $3, $4, $5, $6)`;
-        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id])
+        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.user.id])
             .then((result) => {
                 res.sendStatus(201);
             })
