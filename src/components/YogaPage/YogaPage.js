@@ -27,6 +27,14 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    control: {
+        padding: theme.spacing.unit * 2,
+    },
+});
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -42,11 +50,20 @@ class YogaPage extends Component {
                 article_type: '',
                 study_details: '',
                 date_posted: '',
-                user_id: '',
             },
             allYogaArticles: [],
+            open: false,
+            spacing: '16',
         }
     }
+
+    handleClickOpen = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+    };
 
     handleChange = propertyName => event => {
         this.setState({
@@ -99,7 +116,6 @@ class YogaPage extends Component {
                 article_type: '',
                 study_details: '',
                 date_posted: '',
-                user_id: '',
             }
         })
     }
@@ -118,14 +134,53 @@ class YogaPage extends Component {
 
     render() {
         let content = null;
+        const { classes } = this.props;
+        const { spacing } = this.state;
 
         if (this.props.user.userName) {
             content = (
                 <div>
-                    <p>
-                        Yoga Training Page
-                     </p>
-                     <form onSubmit={this.addNewYogaArticle}>
+<Button color="primary" variant="contained" onClick={this.handleClickOpen}>Add new article</Button>
+                    <Dialog
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="form-dialog-title"
+                    >
+                        <DialogContent>
+                            <TextField margin="dense" autoFocus fullWidth className="input" onChange={this.handleChange('title')} value={this.state.newYogaArticle.title} placeholder='Article Title' />
+                            <br />
+                            <TextField className="input" onChange={this.handleChange('link')} value={this.state.newYogaArticle.link} placeholder='Article url here' />
+                            <br />
+                            <FormControl>
+                                {/* <InputLabel>Exercise</InputLabel> */}
+                                <Select
+                                    value={this.state.newYogaArticle.article_type}
+                                    onChange={this.handleChange('article_type')}
+                                    displayEmpty
+                                >
+                                    <MenuItem value={'strength training'}>Strength Training</MenuItem>
+                                    <MenuItem value={'aerobic training'}>Aerobic Training</MenuItem>
+                                    <MenuItem value={'high intensity interval training'}>High Intensity Interval Training</MenuItem>
+                                    <MenuItem value={'yoga'}>Yoga</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <br />
+                            <TextField
+                                multiline={true}
+                                rows={4}
+                                className="input" onChange={this.handleChange('study_details')} value={this.state.newYogaArticle.study_details} placeholder='Study details here' />
+                            <br />
+                            <TextField type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newYogaArticle.date_posted} placeholder='Date posted' />
+                            <br />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button variant="contained" onClick={this.handleClose}>
+                                Cancel
+                            </Button>
+                            <Button variant="fab" color="primary" aria-label="add" onClick={this.addNewYogaArticle}><AddIcon /></Button>
+                        </DialogActions>
+                    </Dialog>
+                     {/* <form onSubmit={this.addNewYogaArticle}>
                      <input className="input" onChange={this.handleChange('title')} value={this.state.newYogaArticle.title} placeholder='Article Title' />
                         <input className="input" onChange={this.handleChange('link')} value={this.state.newYogaArticle.link} placeholder='Article url here' />
                         <input className="input" onChange={this.handleChange('article_type')} value={this.state.newYogaArticle.article_type} placeholder='Exercise Category' />
@@ -133,7 +188,7 @@ class YogaPage extends Component {
                         <input type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newYogaArticle.date_posted} placeholder='Date posted' />
                         <input className="input" onChange={this.handleChange('user_id')} value={this.state.newYogaArticle.user_id} placeholder='user_id' />
                         <input className="button" type="submit" value="Post article" />
-                    </form>
+                    </form> */}
                     <div>
                         <ul>
                             {this.state.allYogaArticles.map(article =>
@@ -157,4 +212,8 @@ class YogaPage extends Component {
     }
 }
 
-export default connect(mapStateToProps)(YogaPage);
+YogaPage.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(YogaPage));
