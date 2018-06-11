@@ -20,9 +20,20 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import '../../styles/main.css';
+import Grid from '@material-ui/core/Grid';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
 
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    control: {
+        padding: theme.spacing.unit * 2,
+    },
+});
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -41,6 +52,7 @@ class StrengthPage extends Component {
             },
             allStrengthArticles: [],
             open: false,
+            spacing: '16',
         }
     }
 
@@ -121,6 +133,8 @@ class StrengthPage extends Component {
     render() {
         console.log('this.state after render', this.state);
         let content = null;
+        const { classes } = this.props;
+        const { spacing } = this.state;
 
         if (this.props.user.userName) {
             content = (
@@ -132,7 +146,6 @@ class StrengthPage extends Component {
                         aria-labelledby="form-dialog-title"
                     >
                         <DialogContent>
-                            {/* <form onSubmit={this.addNewStrengthArticle}> */}
                             <TextField margin="dense" autoFocus fullWidth className="input" onChange={this.handleChange('title')} value={this.state.newStrengthArticle.title} placeholder='Article Title' />
                             <br />
                             <TextField className="input" onChange={this.handleChange('link')} value={this.state.newStrengthArticle.link} placeholder='Article url here' />
@@ -148,7 +161,6 @@ class StrengthPage extends Component {
                                     <MenuItem value={'aerobic training'}>Aerobic Training</MenuItem>
                                     <MenuItem value={'high intensity interval training'}>High Intensity Interval Training</MenuItem>
                                     <MenuItem value={'yoga'}>Yoga</MenuItem>
-
                                 </Select>
                             </FormControl>
                             <br />
@@ -159,14 +171,9 @@ class StrengthPage extends Component {
                             <br />
                             <TextField type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
                             <br />
-                            {/* <Button className="submitModalButton" type="submit" variant="fab" mini color="primary" aria-label="add" onClick={this.addNewStrengthArticle}><AddIcon /></Button> */}
-                            {/* <button onClick={this.votesButton}>Votes</button> */}
-                            {/* </form> */}
-
-
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={this.handleClose}>
+                            <Button variant="contained" onClick={this.handleClose}>
                                 Cancel
                             </Button>
                             <Button variant="fab" color="primary" aria-label="add" onClick={this.addNewStrengthArticle}><AddIcon /></Button>
@@ -207,14 +214,28 @@ class StrengthPage extends Component {
                       
                     </form> */}
                     <div>
-                        <ul>
+                        {/* <ul>
                             {this.state.allStrengthArticles.map(article =>
                                 <StrengthItems key={article.id}
                                     article={article}
                                     delete={this.deleteArticle}
                                 />
                             )}
-                        </ul>
+                        </ul> */}
+                        <Grid container className={classes.root} spacing={16}>
+                            <Grid item xs={12}>
+                                <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
+                                    <ul>
+                                        {this.state.allStrengthArticles.map(article =>
+                                            <StrengthItems key={article.id}
+                                                article={article}
+                                                delete={this.deleteArticle}
+                                            />
+                                        )}
+                                    </ul>
+                                </Grid>
+                            </Grid>
+                        </Grid>
                     </div>
                 </div>
             );
@@ -229,4 +250,8 @@ class StrengthPage extends Component {
     }
 }
 
-export default connect(mapStateToProps)(StrengthPage);
+StrengthPage.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(StrengthPage));

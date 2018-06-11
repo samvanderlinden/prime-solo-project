@@ -22,7 +22,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = {
   card: {
-    maxWidth: 345,
+    maxWidth: 375,
     marginBottom: 12,
   },
   title: {
@@ -65,11 +65,15 @@ class StrengthItems extends Component {
               New article: {this.props.article.title}
             </Typography>
             <Typography component="p">
-            Article source <a href="{this.props.article.link}">{this.props.article.link}</a>
+            Article source: <a href="{this.props.article.link}" target="{this.props.article.link}" >{this.props.article.link}</a>
             </Typography>
-            Exercise type {this.props.article.article_type}<br />
-            Study details {this.props.article.study_details}<br />
-            Date posted {moment(this.props.article.date_posted).format('MMMM Do YYYY')}<br />
+            <Typography component="p">
+            Exercise type: {this.props.article.article_type}
+            </Typography>
+            <Typography component="p">
+            Study details: {this.props.article.study_details}
+            </Typography>
+            Date posted: {moment(this.props.article.date_posted).format('MMMM Do YYYY')}
           </CardContent>
           <CardActions>
             <Button variant="fab" mini color="secondary" aria-label="delete" onClick={() => this.props.delete(this.props.article)}><DeleteIcon/></Button><br />
