@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Nav from '../../components/Nav/Nav';
-
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 import axios from 'axios';
@@ -17,7 +15,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import '../../styles/main.css';
+
 
 
 const mapStateToProps = state => ({
@@ -34,12 +38,19 @@ class StrengthPage extends Component {
                 article_type: '',
                 study_details: '',
                 date_posted: '',
-                // user_id: '',
-                // username_name: '',
             },
             allStrengthArticles: [],
+            open: false,
         }
     }
+
+    handleClickOpen = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+    };
 
     handleChange = propertyName => event => {
         this.setState({
@@ -61,12 +72,6 @@ class StrengthPage extends Component {
             this.props.history.push('home');
         }
     }
-
-    // votesButton() {
-    //     this.setState({
-    //         votes: ++this.state.votes
-    //     })
-    // }
 
     getStrengthArticles = () => {
         axios.get('/api/articles/strength').then((response) => {
@@ -97,8 +102,6 @@ class StrengthPage extends Component {
                 article_type: '',
                 study_details: '',
                 date_posted: '',
-                // user_id: '',
-                // username_name: '',
             }
         })
     }
@@ -122,16 +125,64 @@ class StrengthPage extends Component {
         if (this.props.user.userName) {
             content = (
                 <div>
-                    <p>
-                        Strength Training Page
-                    </p>
-                    <form onSubmit={this.addNewStrengthArticle}>
+                    <Button color="primary" variant="contained" onClick={this.handleClickOpen}>Add new article</Button>
+                    <Dialog
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="form-dialog-title"
+                    >
+                        <DialogContent>
+                            {/* <form onSubmit={this.addNewStrengthArticle}> */}
+                            <TextField margin="dense" autoFocus fullWidth className="input" onChange={this.handleChange('title')} value={this.state.newStrengthArticle.title} placeholder='Article Title' />
+                            <br />
+                            <TextField className="input" onChange={this.handleChange('link')} value={this.state.newStrengthArticle.link} placeholder='Article url here' />
+                            <br />
+                            <FormControl>
+                                {/* <InputLabel>Exercise</InputLabel> */}
+                                <Select
+                                    value={this.state.newStrengthArticle.article_type}
+                                    onChange={this.handleChange('article_type')}
+                                    displayEmpty
+                                >
+                                    <MenuItem value={'strength training'}>Strength Training</MenuItem>
+                                    <MenuItem value={'aerobic training'}>Aerobic Training</MenuItem>
+                                    <MenuItem value={'high intensity interval training'}>High Intensity Interval Training</MenuItem>
+                                    <MenuItem value={'yoga'}>Yoga</MenuItem>
+
+                                </Select>
+                            </FormControl>
+                            <br />
+                            <TextField
+                                multiline={true}
+                                rows={4}
+                                className="input" onChange={this.handleChange('study_details')} value={this.state.newStrengthArticle.study_details} placeholder='Study details here' />
+                            <br />
+                            <TextField type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
+                            <br />
+                            {/* <Button className="submitModalButton" type="submit" variant="fab" mini color="primary" aria-label="add" onClick={this.addNewStrengthArticle}><AddIcon /></Button> */}
+                            {/* <button onClick={this.votesButton}>Votes</button> */}
+                            {/* </form> */}
+
+
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleClose}>
+                                Cancel
+                            </Button>
+                            <Button variant="fab" color="primary" aria-label="add" onClick={this.addNewStrengthArticle}><AddIcon /></Button>
+                        </DialogActions>
+                    </Dialog>
+
+
+
+
+                    {/* <form onSubmit={this.addNewStrengthArticle}>
                         <TextField className="input" onChange={this.handleChange('title')} value={this.state.newStrengthArticle.title} placeholder='Article Title' />
                         <br />
                         <TextField className="input" onChange={this.handleChange('link')} value={this.state.newStrengthArticle.link} placeholder='Article url here' />
                         <br />
                         <FormControl>
-                            {/* <InputLabel>Exercise</InputLabel> */}
+                            
                             <Select
                                 value={this.state.newStrengthArticle.article_type}
                                 onChange={this.handleChange('article_type')}
@@ -152,12 +203,9 @@ class StrengthPage extends Component {
                         <br />
                         <TextField type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
                         <br />
-                        {/* <input className="input" onChange={this.handleChange('username_name')} value={this.state.newStrengthArticle.username_name} placeholder='username' /> */}
-                        {/* <TextField className="input" onChange={this.handleChange('user_id')} value={this.state.newStrengthArticle.user_id} placeholder='user_id' /> */}
-                        {/* <input className="button" type="submit" value="Post article" /> */}
                         <Button type="submit" variant="fab" mini color="primary" aria-label="add"><AddIcon /></Button>
-                        {/* <button onClick={this.votesButton}>Votes</button> */}
-                    </form>
+                      
+                    </form> */}
                     <div>
                         <ul>
                             {this.state.allStrengthArticles.map(article =>
