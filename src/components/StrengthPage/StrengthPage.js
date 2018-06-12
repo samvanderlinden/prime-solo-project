@@ -130,6 +130,18 @@ class StrengthPage extends Component {
             })
     }
 
+    // updateArticle = article => {
+    //     axios.put('/api/articles/strength', { params: { id: article.id, user_id: article.user_id}})
+    //     .then((response) => {
+    //         console.log('strengths update response', response);
+    //         this.getStrengthArticles();
+    //     })
+    //     .catch((error) => {
+    //         console.log('error on update strengths article:', error);
+    //         alert('You can only update articles you added');
+    //     })
+    // }
+
     render() {
         console.log('this.state after render', this.state);
         let content = null;
@@ -180,39 +192,6 @@ class StrengthPage extends Component {
                         </DialogActions>
                     </Dialog>
 
-
-
-
-                    {/* <form onSubmit={this.addNewStrengthArticle}>
-                        <TextField className="input" onChange={this.handleChange('title')} value={this.state.newStrengthArticle.title} placeholder='Article Title' />
-                        <br />
-                        <TextField className="input" onChange={this.handleChange('link')} value={this.state.newStrengthArticle.link} placeholder='Article url here' />
-                        <br />
-                        <FormControl>
-                            
-                            <Select
-                                value={this.state.newStrengthArticle.article_type}
-                                onChange={this.handleChange('article_type')}
-                                displayEmpty
-                            >
-                                <MenuItem value={'strength training'}>Strength Training</MenuItem>
-                                <MenuItem value={'aerobic training'}>Aerobic Training</MenuItem>
-                                <MenuItem value={'high intensity interval training'}>High Intensity Interval Training</MenuItem>
-                                <MenuItem value={'yoga'}>Yoga</MenuItem>
-
-                            </Select>
-                        </FormControl>
-                        <br />
-                        <TextField
-                            multiline={true}
-                            rows={4}
-                            className="input" onChange={this.handleChange('study_details')} value={this.state.newStrengthArticle.study_details} placeholder='Study details here' />
-                        <br />
-                        <TextField type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newStrengthArticle.date_posted} placeholder='Date posted' />
-                        <br />
-                        <Button type="submit" variant="fab" mini color="primary" aria-label="add"><AddIcon /></Button>
-                      
-                    </form> */}
                     <div>
                         {/* <ul>
                             {this.state.allStrengthArticles.map(article =>
@@ -222,25 +201,25 @@ class StrengthPage extends Component {
                                 />
                             )}
                         </ul> */}
+                        <ul>
                         <Grid container className={classes.root} spacing={16}>
                             <Grid item xs={12}>
-                                <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
-                                    <ul>
+                                <Grid container className={classes.demo} justify="flex-start">
                                         {this.state.allStrengthArticles.map(article =>
                                             <StrengthItems key={article.id}
                                                 article={article}
                                                 delete={this.deleteArticle}
+                                                // update={this.updateArticle}
                                             />
                                         )}
-                                    </ul>
                                 </Grid>
                             </Grid>
                         </Grid>
+                        </ul>
                     </div>
                 </div>
             );
         }
-
         return (
             <div>
                 <Nav />

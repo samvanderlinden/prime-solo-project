@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Nav from '../../components/Nav/Nav';
-
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 import { Link } from 'react-router-dom';
@@ -21,21 +19,21 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = {
     card: {
-      maxWidth: 375,
-      marginBottom: 12,
+        maxWidth: 375,
+        marginBottom: 12,
     },
     title: {
-      marginBottom: 16,
-      fontSize: 14,
+        marginBottom: 16,
+        fontSize: 14,
     },
     pos: {
-      marginBottom: 12,
+        marginBottom: 12,
     },
     media: {
-      height: 0,
-      paddingTop: '56.25%', // 16:9
+        height: 0,
+        paddingTop: '56.25%', // 16:9
     },
-  };
+};
 
 
 const mapStateToProps = state => ({
@@ -44,57 +42,41 @@ const mapStateToProps = state => ({
 
 class HiitItems extends Component {
     render() {
-        const{classes} = this.props;
+        const { classes } = this.props;
         return (
             <div>
                 <Card className={classes.card}>
-        <CardMedia
-          className={classes.media}
-          image="https://images.unsplash.com/photo-1516922654979-6833a58a1b83?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=81c8acc08372891e76bd00e973bbbeb7&auto=format&fit=crop&w=500&q=60"
-          title="Strength Training"
-        />
-          <CardContent>
-            <Typography variant="headline" component="h1">
-              New article: {this.props.article.title}
-            </Typography>
-            <Typography component="p">
-            Article source: <a href="{this.props.article.link}" target="{this.props.article.link}" >{this.props.article.link}</a>
-            </Typography>
-            <Typography component="p">
-            Exercise type: {this.props.article.article_type}
-            </Typography>
-            <Typography component="p">
-            Study details: {this.props.article.study_details}
-            </Typography>
-            Date posted: {moment(this.props.article.date_posted).format('MMMM Do YYYY')}
-          </CardContent>
-          <CardActions>
-            <Button variant="fab" mini color="secondary" aria-label="delete" onClick={() => this.props.delete(this.props.article)}><DeleteIcon/></Button><br />
-          </CardActions>
-        </Card>
-                {/* <p>
-                New article: {this.props.article.title} <br/>
-                Article url: <a href="{this.props.article.link}">{this.props.article.link}</a><br/>
-                Exercise type: {this.props.article.article_type}<br/>
-                Study details: {this.props.article.study_details}<br/>
-                Date posted: {moment(this.props.article.date_posted).format('MMMM Do YYYY')}<br/>
-                user_id: {this.props.article.user_id}<br/>
-                Delete article: <button onClick={() => this.props.delete(this.props.article)}>Delete</button><br/>
-                <Link to="/hiit/comments">See comments</Link>
-                </p> */}
-                
+                    <CardMedia
+                        className={classes.media}
+                        image="https://images.unsplash.com/photo-1516922654979-6833a58a1b83?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=81c8acc08372891e76bd00e973bbbeb7&auto=format&fit=crop&w=500&q=60"
+                        title="High Intensity Interval Training"
+                    />
+                    <CardContent>
+                        <Typography variant="headline" component="h1">
+                            New article: {this.props.article.title}
+                        </Typography>
+                        <Typography component="p">
+                            Article source: <a href="{this.props.article.link}" target="{this.props.article.link}" >{this.props.article.link}</a>
+                        </Typography>
+                        <Typography component="p">
+                            Exercise type: {this.props.article.article_type}
+                        </Typography>
+                        <Typography component="p">
+                            Study details: {this.props.article.study_details}
+                        </Typography>
+                        Date posted: {moment(this.props.article.date_posted).format('MMMM Do YYYY')}
+                    </CardContent>
+                    <CardActions>
+                        <Button variant="fab" mini color="secondary" aria-label="delete" onClick={() => this.props.delete(this.props.article)}><DeleteIcon /></Button><br />
+                    </CardActions>
+                </Card>
             </div>
-
-            
         );
     }
-
-
-
 }
 
 HiitItems.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+};
 
 export default connect(mapStateToProps)(withStyles(styles)(HiitItems));
