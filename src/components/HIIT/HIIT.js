@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Nav from '../../components/Nav/Nav';
-
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 import HiitItems from '../HiitItems/HiitItems';
@@ -120,15 +118,15 @@ class HIIT extends Component {
     }
 
     deleteArticle = article => {
-        axios.delete('/api/articles/hiit', {params: {id: article.id, user_id: article.user_id}})
-        .then((response) => {
-            console.log('hiit delete response', response);
-            this.getHiitArticles();
-        })
-        .catch((error) => {
-            console.log('error on delete hiit article:', error);
-            alert('You can only delete the articles you added');
-        })
+        axios.delete('/api/articles/hiit', { params: { id: article.id, user_id: article.user_id } })
+            .then((response) => {
+                console.log('hiit delete response', response);
+                this.getHiitArticles();
+            })
+            .catch((error) => {
+                console.log('error on delete hiit article:', error);
+                alert('You can only delete the articles you added');
+            })
     }
 
     render() {
@@ -179,28 +177,22 @@ class HIIT extends Component {
                             <Button variant="fab" color="primary" aria-label="add" onClick={this.addNewHiitArticle}><AddIcon /></Button>
                         </DialogActions>
                     </Dialog>
-
-
-                    {/* <form onSubmit={this.addNewHiitArticle}>
-                    <input className="input" onChange={this.handleChange('title')} value={this.state.newHiitArticle.title} placeholder='Article Title' />
-                        <input className="input" onChange={this.handleChange('link')} value={this.state.newHiitArticle.link} placeholder='Article url here' />
-                        <input className="input" onChange={this.handleChange('article_type')} value={this.state.newHiitArticle.article_type} placeholder='Exercise Category' />
-                        <input className="input" onChange={this.handleChange('study_details')} value={this.state.newHiitArticle.study_details} placeholder='Study details here' />
-                        <input type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newHiitArticle.date_posted} placeholder='Date posted' />
-                        <input className="input" onChange={this.handleChange('user_id')} value={this.state.newHiitArticle.user_id} placeholder='user_id' />
-                        <input className="button" type="submit" value="Post article" />
-                    </form> */}
                     <div>
                         <ul>
-                            {this.state.allHiitArticles.map(article =>
-                                <HiitItems key={article.id}
-                                    article={article}
-                                    delete={this.deleteArticle}
-                                />
-                            )}
+                            <Grid container className={classes.root} spacing={16}>
+                                <Grid item xs={12}>
+                                    <Grid container className={classes.demo} justify="flex-start">
+                                        {this.state.allHiitArticles.map(article =>
+                                            <HiitItems key={article.id}
+                                                article={article}
+                                                delete={this.deleteArticle}
+                                            />
+                                        )}
+                                    </Grid>
+                                </Grid>
+                            </Grid>
                         </ul>
                     </div>
-
                 </div>
             );
         }
@@ -216,5 +208,8 @@ class HIIT extends Component {
 
 }
 
+HIIT.propTypes = {
+    classes: PropTypes.object.isRequired,
+}
 
-export default connect(mapStateToProps)(HIIT);
+export default connect(mapStateToProps)(withStyles(styles)(HIIT));

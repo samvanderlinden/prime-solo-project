@@ -22,7 +22,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = {
   card: {
-    maxWidth: 375,
+    width: 395,
+    height: 450,
     marginBottom: 12,
   },
   title: {
@@ -50,7 +51,7 @@ class YogaItems extends Component {
         const{classes}=this.props;
         return (
             <div>
-                <Card className={classes.card}>
+                <Card className={classes.card} style={{maxHeight: 375, overflow: 'auto', margin: 8}}>
         <CardMedia
           className={classes.media}
           image="https://images.unsplash.com/photo-1508050249562-b28a87434496?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=58c6f24f1cc11a17402f649ecf3e46d6&auto=format&fit=crop&w=500&q=60"
@@ -74,18 +75,7 @@ class YogaItems extends Component {
           <CardActions>
             <Button variant="fab" mini color="secondary" aria-label="delete" onClick={() => this.props.delete(this.props.article)}><DeleteIcon/></Button><br />
           </CardActions>
-        </Card>
-                {/* <p>
-                New article: {this.props.article.title} <br/>
-                Article url: <a href="{this.props.article.link}">{this.props.article.link}</a><br/>
-                Exercise type: {this.props.article.article_type}<br/>
-                Study details: {this.props.article.study_details}<br/>
-                Date posted: {moment(this.props.article.date_posted).format('MMMM Do YYYY')}<br/>
-                User id: {this.props.article.user_id}<br/>
-                Delete article: <button onClick={() => this.props.delete(this.props.article)}>Delete</button><br/>
-                <Link to="/yoga/comments">See comments</Link>
-                </p> */}
-                
+        </Card>                
             </div>
         );
     }

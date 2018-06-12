@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Nav from '../../components/Nav/Nav';
-
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 import axios from 'axios';
@@ -121,15 +119,15 @@ class YogaPage extends Component {
     }
 
     deleteArticle = article => {
-        axios.delete('/api/articles/yoga', {params: {id: article.id, user_id: article.user_id}})
-        .then((response) => {
-            console.log('yoga delete response', response);
-            this.getYogaArticles();
-        })
-        .catch((error) => {
-            console.log('error on delete yoga article:', error);
-            alert('You can only delete the articles you added');
-        })
+        axios.delete('/api/articles/yoga', { params: { id: article.id, user_id: article.user_id } })
+            .then((response) => {
+                console.log('yoga delete response', response);
+                this.getYogaArticles();
+            })
+            .catch((error) => {
+                console.log('error on delete yoga article:', error);
+                alert('You can only delete the articles you added');
+            })
     }
 
     render() {
@@ -140,7 +138,7 @@ class YogaPage extends Component {
         if (this.props.user.userName) {
             content = (
                 <div>
-<Button color="primary" variant="contained" onClick={this.handleClickOpen}>Add new article</Button>
+                    <Button color="primary" variant="contained" onClick={this.handleClickOpen}>Add new article</Button>
                     <Dialog
                         open={this.state.open}
                         onClose={this.handleClose}
@@ -180,23 +178,20 @@ class YogaPage extends Component {
                             <Button variant="fab" color="primary" aria-label="add" onClick={this.addNewYogaArticle}><AddIcon /></Button>
                         </DialogActions>
                     </Dialog>
-                     {/* <form onSubmit={this.addNewYogaArticle}>
-                     <input className="input" onChange={this.handleChange('title')} value={this.state.newYogaArticle.title} placeholder='Article Title' />
-                        <input className="input" onChange={this.handleChange('link')} value={this.state.newYogaArticle.link} placeholder='Article url here' />
-                        <input className="input" onChange={this.handleChange('article_type')} value={this.state.newYogaArticle.article_type} placeholder='Exercise Category' />
-                        <input className="input" onChange={this.handleChange('study_details')} value={this.state.newYogaArticle.study_details} placeholder='Study details here' />
-                        <input type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newYogaArticle.date_posted} placeholder='Date posted' />
-                        <input className="input" onChange={this.handleChange('user_id')} value={this.state.newYogaArticle.user_id} placeholder='user_id' />
-                        <input className="button" type="submit" value="Post article" />
-                    </form> */}
                     <div>
                         <ul>
-                            {this.state.allYogaArticles.map(article =>
-                                <YogaItems key={article.id}
-                                    article={article}
-                                    delete={this.deleteArticle}
-                                />
-                            )}
+                            <Grid container className={classes.root} spacing={16}>
+                                <Grid item xs={12}>
+                                    <Grid container className={classes.demo} justify="flex-start">
+                                        {this.state.allYogaArticles.map(article =>
+                                            <YogaItems key={article.id}
+                                                article={article}
+                                                delete={this.deleteArticle}
+                                            />
+                                        )}
+                                    </Grid>
+                                </Grid>
+                            </Grid>
                         </ul>
                     </div>
                 </div>

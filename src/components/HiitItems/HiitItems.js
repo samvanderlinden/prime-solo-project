@@ -19,7 +19,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = {
     card: {
-        maxWidth: 375,
+        width: 395,
+        height: 450,
         marginBottom: 12,
     },
     title: {
@@ -35,7 +36,6 @@ const styles = {
     },
 };
 
-
 const mapStateToProps = state => ({
     user: state.user,
 });
@@ -45,7 +45,7 @@ class HiitItems extends Component {
         const { classes } = this.props;
         return (
             <div>
-                <Card className={classes.card}>
+                <Card className={classes.card} style={{maxHeight: 375, overflow: 'auto', margin: 8}}>
                     <CardMedia
                         className={classes.media}
                         image="https://images.unsplash.com/photo-1516922654979-6833a58a1b83?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=81c8acc08372891e76bd00e973bbbeb7&auto=format&fit=crop&w=500&q=60"
