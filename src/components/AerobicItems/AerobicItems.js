@@ -21,7 +21,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = {
   card: {
-    maxWidth: 375,
+    width: 395,
+    height: 450,
     marginBottom: 12,
   },
   title: {
@@ -47,7 +48,7 @@ class AerobicItems extends Component {
 const{classes} = this.props;
         return (
             <div>
-            <Card className={classes.card}>
+            <Card className={classes.card} style={{maxHeight: 375, overflow: 'auto', margin: 8}}>
         <CardMedia
           className={classes.media}
           image="https://images.unsplash.com/photo-1521816043604-6bbe57d1c281?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12f47e521de9f423319bf0c2a656ac00&auto=format&fit=crop&w=500&q=60"

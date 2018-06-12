@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Nav from '../../components/Nav/Nav';
-
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 import axios from 'axios';
@@ -86,11 +84,11 @@ class AerobicPage extends Component {
         })
         this.setState({
             newAerobicArticle: {
-            title: '',
-            link: '',
-            article_type: '',
-            study_details: '',
-            date_posted: '',
+                title: '',
+                link: '',
+                article_type: '',
+                study_details: '',
+                date_posted: '',
             }
         })
     }
@@ -119,19 +117,21 @@ class AerobicPage extends Component {
     }
 
     deleteArticle = article => {
-        axios.delete('/api/articles/aerobic', {params: {id: article.id, user_id: article.user_id}})
-        .then((response) => {
-            console.log('aerobic delete response', response);
-            this.getAerobicArticles();
-        })
-        .catch((error) => {
-            console.log('error on aerobic article:', error);
-            alert('You can only delete the articles you added');
-        })
+        axios.delete('/api/articles/aerobic', { params: { id: article.id, user_id: article.user_id } })
+            .then((response) => {
+                console.log('aerobic delete response', response);
+                this.getAerobicArticles();
+            })
+            .catch((error) => {
+                console.log('error on aerobic article:', error);
+                alert('You can only delete the articles you added');
+            })
     }
 
     render() {
         let content = null;
+        const { classes } = this.props;
+        const { spacing } = this.state;
 
         if (this.props.user.userName) {
             content = (
@@ -185,18 +185,24 @@ class AerobicPage extends Component {
                         <input type="date" className="input" onChange={this.handleChange('date_posted')} value={this.state.newAerobicArticle.date_posted} placeholder='Date posted' />
                         <input className="input" onChange={this.handleChange('user_id')} value={this.state.newAerobicArticle.user_id} placeholder='user_id' /> */}
 
-                        {/* <button>Vote up</button>
+                    {/* <button>Vote up</button>
                         <button>Vote down</button> */}
-                        {/* <input className="button" type="submit" value="Post article" />
+                    {/* <input className="button" type="submit" value="Post article" />
                     </form> */}
                     <div>
                         <ul>
-                            {this.state.allAerobicArticles.map(article =>
-                                <AerobicItems key={article.id}
-                                    article={article}
-                                    delete={this.deleteArticle}
-                                />
-                            )}
+                            <Grid container className={classes.root} spacing={16}>
+                                <Grid item xs={12}>
+                                    <Grid container className={classes.demo} justify="flex-start">
+                                        {this.state.allAerobicArticles.map(article =>
+                                            <AerobicItems key={article.id}
+                                                article={article}
+                                                delete={this.deleteArticle}
+                                            />
+                                        )}
+                                    </Grid>
+                                </Grid>
+                            </Grid>
                         </ul>
                     </div>
                 </div>

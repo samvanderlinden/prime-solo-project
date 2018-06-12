@@ -25,7 +25,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -130,18 +129,6 @@ class StrengthPage extends Component {
             })
     }
 
-    // updateArticle = article => {
-    //     axios.put('/api/articles/strength', { params: { id: article.id, user_id: article.user_id}})
-    //     .then((response) => {
-    //         console.log('strengths update response', response);
-    //         this.getStrengthArticles();
-    //     })
-    //     .catch((error) => {
-    //         console.log('error on update strengths article:', error);
-    //         alert('You can only update articles you added');
-    //     })
-    // }
-
     render() {
         console.log('this.state after render', this.state);
         let content = null;
@@ -193,14 +180,6 @@ class StrengthPage extends Component {
                     </Dialog>
 
                     <div>
-                        {/* <ul>
-                            {this.state.allStrengthArticles.map(article =>
-                                <StrengthItems key={article.id}
-                                    article={article}
-                                    delete={this.deleteArticle}
-                                />
-                            )}
-                        </ul> */}
                         <ul>
                         <Grid container className={classes.root} spacing={16}>
                             <Grid item xs={12}>
