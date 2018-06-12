@@ -85,7 +85,8 @@ class StrengthPage extends Component {
     }
 
     getStrengthArticles = () => {
-        axios.get('/api/articles/strength').then((response) => {
+        axios.get('/api/articles/strength')
+        .then((response) => {
             console.log('GET strengths articles response.data', response.data);
             this.setState({
                 allStrengthArticles: response.data
@@ -100,7 +101,8 @@ class StrengthPage extends Component {
         event.preventDefault();
         console.log('post button clicked');
         console.log('addNewStrengthArticle', this.state.newStrengthArticle);
-        axios.post('/api/articles/strength', this.state.newStrengthArticle).then(response => {
+        axios.post('/api/articles/strength', this.state.newStrengthArticle)
+        .then(response => {
             console.log(response);
             this.getStrengthArticles();
         }).catch(error => {
@@ -129,8 +131,20 @@ class StrengthPage extends Component {
             })
     }
 
+    updateArticle = article => {
+        axios.put('/api/articles/strength', this.state.newStrengthArticle)
+        .then((response) => {
+            console.log('strengths put response', response);
+            this.getStrengthArticles();
+        })
+        .catch((error) => {
+            console.log('error on put strength article:', error);
+            alert('You can only edit articles you added');
+        })    
+    }
+
     render() {
-        console.log('this.state after render', this.state);
+        console.log('rendering strengths', this.state.newStrengthArticle)
         let content = null;
         const { classes } = this.props;
         const { spacing } = this.state;
@@ -178,22 +192,23 @@ class StrengthPage extends Component {
                             <Button variant="fab" color="primary" aria-label="add" onClick={this.addNewStrengthArticle}><AddIcon /></Button>
                         </DialogActions>
                     </Dialog>
-
                     <div>
                         <ul>
-                        <Grid container className={classes.root} spacing={16}>
-                            <Grid item xs={12}>
-                                <Grid container className={classes.demo} justify="flex-start">
+                            <Grid container className={classes.root} spacing={16}>
+                                <Grid item xs={12}>
+                                    <Grid container className={classes.demo} justify="flex-start">
                                         {this.state.allStrengthArticles.map(article =>
                                             <StrengthItems key={article.id}
                                                 article={article}
                                                 delete={this.deleteArticle}
-                                                // update={this.updateArticle}
+                                                update={this.updateArticle}
+                                                handleChange={this.handleChange}
+                                                newStrengthArticle={this.state.newStrengthArticle}
                                             />
                                         )}
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
                         </ul>
                     </div>
                 </div>

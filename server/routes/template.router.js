@@ -252,25 +252,26 @@ router.delete('/yoga', (req, res) => {
 });
 
 //PUT
-// router.put('/strength', (req, res) => {
-//     console.log('PUT route');
-//     if(req.isAuthenticated() && req.params.id === req.user.id) {
-//         let queryText = `UPDATE "article_table" SET "title" = $1, "link" = $2, "study_details" = $3, "date_posted" = $4, "article_type" = $5
-//                         WHERE "id" = $6`;
-//         pool.query(queryText, [req.params.title, req.params.link, req.params.study_details, req.params.date_posted, req.params.article_type, req.user.id])
-//         .then((result) => {
-//             res.sendStatus(200)
-//         })
-//         .catch((error) => {
-//             console.log('error on PUT: ', error)
-//             res.sendStatus(500);
-//         })
-//     } else {
-//         res.sendStatus(403);
-//     }
+router.put('/strength', (req, res) => {
+    console.log('PUT route');
+    console.log('req.body', req.body);
+    if(req.isAuthenticated() && req.body.user_id == req.body.id) {
+        let queryText = `UPDATE "article_table" SET "title" = $1, "link" = $2, "study_details" = $3, "date_posted" = $4, "article_type" = $5, "user_id" = $6
+                        WHERE "id" = $7`;
+        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id, req.body.id])
+        .then((result) => {
+            console.log('PUT result.rows:', result.rows)
+            console.log
+            res.sendStatus(200)
+        })
+        .catch((error) => {
+            console.log('error on PUT: ', error)
+            res.sendStatus(500);
+        })
+    } else {
+        res.sendStatus(403);
+    }
 
-// });
-
-
+});
 
 module.exports = router;

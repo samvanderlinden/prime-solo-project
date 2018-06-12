@@ -60,11 +60,6 @@ const App = () => (
           path="/yoga"
           component={YogaPage}
         />
-
-        <Route
-          path="/strength/comments"
-          component={StrengthComments}
-        />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
 
