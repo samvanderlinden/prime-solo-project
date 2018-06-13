@@ -61,6 +61,10 @@ input[type="submit"] {
     background-color: #f8f8f8;
 }
 
+.nav {
+    background-color: #373068;
+}
+
 .navbar {
   background-color: #00acb0;
   width: 100%;
@@ -89,7 +93,7 @@ li a {
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
     color: #eee;
 }
 
