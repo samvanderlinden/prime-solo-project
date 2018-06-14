@@ -237,7 +237,7 @@ router.delete('/yoga', (req, res) => {
 //PUT
 router.put('/strength', (req, res) => {
     console.log('PUT route');
-    console.log('req.body', req.body);
+    console.log('PUT req.body', req.body);
     if(req.isAuthenticated() && req.body.user_id == req.user.id) {
         let queryText = `UPDATE "article_table" SET "title" = $1, "link" = $2, "study_details" = $3, "date_posted" = $4, "article_type" = $5, "user_id" = $6
                         WHERE "id" = $7`;

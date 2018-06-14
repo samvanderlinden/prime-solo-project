@@ -18,11 +18,11 @@ const Nav = () => (
             User Home
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/info">
             Info Page
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/strength">
             Strength Training Page

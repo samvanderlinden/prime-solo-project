@@ -6,6 +6,8 @@ import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 
+import Button from '@material-ui/core/Button';
+
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -36,13 +38,20 @@ class UserPage extends Component {
           <h1
             id="welcome"
           >
-            Welcome, { this.props.user.userName }!
+            Welcome, {this.props.user.userName}!
           </h1>
-          <button
+          <Button color="primary" variant="contained"
             onClick={this.logout}
           >
             Log Out
-          </button>
+          </Button>
+          <div id="about">
+            <p>
+              FitnessRx is an application for health and fitness professionals to share literature about
+              the medical benefits of various exercise modalities on disease management, disease prevention,
+              and improvement of quality of life.
+          </p>
+          </div>
         </div>
       );
     }
@@ -50,7 +59,7 @@ class UserPage extends Component {
     return (
       <div>
         <Nav />
-        { content }
+        {content}
       </div>
     );
   }

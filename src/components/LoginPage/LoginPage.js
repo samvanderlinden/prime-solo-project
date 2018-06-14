@@ -5,6 +5,7 @@ import { triggerLogin, formError, clearError } from '../../redux/actions/loginAc
 import Input from '@material-ui/core/Input';
 
 
+
 const mapStateToProps = state => ({
   user: state.user,
   login: state.login,
@@ -90,6 +91,7 @@ class LoginPage extends Component {
             </label>
           </div>
           <div>
+            
             <input
               type="submit"
               name="submit"
@@ -98,17 +100,6 @@ class LoginPage extends Component {
             <Link to="/register">Register</Link>
           </div>
         </form>
-        <div className="about">
-          <p>
-            About
-          </p>
-            
-          <p>
-            FitnessRx is an application for health and fitness professionals to share and discuss 
-            the medical benefits of various exercise modalities on disease management, disease prevention,
-            and improvement of quality of life.
-          </p>
-        </div>
       </div>
     );
   }

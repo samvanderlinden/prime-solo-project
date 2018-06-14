@@ -29,7 +29,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-
 const styles = {
   card: {
     width: 375,
@@ -47,7 +46,6 @@ const styles = {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-
 };
 
 const mapStateToProps = state => ({
@@ -139,7 +137,7 @@ class StrengthItems extends Component {
             <Button variant="contained" onClick={this.handleClose}>
               Cancel
             </Button>
-            <Button variant="fab" color="primary" aria-label="add" onClick={() => {this.props.update(this.props.article)}}><AddIcon /></Button>
+            <Button variant="fab" color="primary" aria-label="add" onClick={ () => this.props.update(this.props.article)}><AddIcon /></Button>
           </DialogActions>
         </Dialog>
       </div >

@@ -24,7 +24,7 @@ import './styles/main.css';
 const App = () => (
   <div>
     
-    <Header title="FitnessRx" />
+    <Header classname="header" title="FitnessRx" />
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
@@ -40,10 +40,10 @@ const App = () => (
           path="/user"
           component={UserPage}
         />
-        <Route
+        {/* <Route
           path="/info"
           component={InfoPage}
-        />
+        /> */}
         <Route 
           path="/strength"
           component={StrengthPage}

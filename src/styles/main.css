@@ -1,10 +1,12 @@
-.about {
-    background-color: #163260;
-    width: 30%;
-    height: 250px;
-    margin: 20px augo;
+#about {
+    /* background-color: #163260; */
+    /* width: 60%; */
+    margin: 20px auto;
     padding: 25px;
-    color: white;
+    color: black;
+    font-size: 40px;
+    font-family: 'Raleway', sans-serif;
+    background-color: rgb(99, 86, 172);
 }
 
 body {
@@ -13,8 +15,11 @@ body {
 
 
 .instructions h1 {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 120px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 200px;
+    /* font-family: 'Raleway', sans-serif; */
 }
 
 .instructions {
@@ -35,6 +40,10 @@ form {
     padding: 25px;
     border-radius: 2px;
 }
+
+/* .header {
+    font-size: 45px;
+} */
 
 input {
     margin: 5px;
@@ -80,18 +89,17 @@ li {
 
 li a {
     display: block;
-    color: black;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
-    color: #eee;
+    color: rgb(190, 190, 190);
 }
 
-.submitModalButton {
+/* .submitModalButton {
     margin-top: 100px;
-}
+} */
