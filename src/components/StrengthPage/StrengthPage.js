@@ -24,6 +24,8 @@ import Grid from '@material-ui/core/Grid';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import swal from 'sweetalert';
+
 
 const styles = theme => ({
     root: {
@@ -51,7 +53,6 @@ class StrengthPage extends Component {
             },
             allStrengthArticles: [],
             open: false,
-            spacing: '16',
         }
     }
 
@@ -127,19 +128,26 @@ class StrengthPage extends Component {
             })
             .catch((error) => {
                 console.log('error on delete strength article:', error);
-                alert('You can only delete the articles you added');
+                swal({
+                    title: 'You can only delete the articles you added!', 
+                    icon: 'warning',
+                });
             })
     }
 
     updateArticle = article => {
-        axios.put('/api/articles/strength', this.state.newStrengthArticle)
+        console.log('update article', article);
+        axios.put('/api/articles/strength', article)
         .then((response) => {
             console.log('strengths put response', response);
             this.getStrengthArticles();
         })
         .catch((error) => {
             console.log('error on put strength article:', error);
-            alert('You can only edit articles you added');
+            swal({
+                title: 'You can only edit articles you added!',
+                icon: 'warning',
+            });
         })    
     }
 
@@ -164,7 +172,6 @@ class StrengthPage extends Component {
                             <TextField className="input" onChange={this.handleChange('link')} value={this.state.newStrengthArticle.link} placeholder='Article url here' />
                             <br />
                             <FormControl>
-                                {/* <InputLabel>Exercise</InputLabel> */}
                                 <Select
                                     value={this.state.newStrengthArticle.article_type}
                                     onChange={this.handleChange('article_type')}
@@ -189,7 +196,7 @@ class StrengthPage extends Component {
                             <Button variant="contained" onClick={this.handleClose}>
                                 Cancel
                             </Button>
-                            <Button variant="fab" color="primary" aria-label="add" onClick={this.addNewStrengthArticle}><AddIcon /></Button>
+                            <Button variant="fab" color="primary" aria-label="add" onClick={this.addNewStrengthArticle} style={{ marginTop: 20 }}><AddIcon /></Button>
                         </DialogActions>
                     </Dialog>
                     <div>

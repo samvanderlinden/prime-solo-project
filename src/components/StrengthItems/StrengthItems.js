@@ -139,7 +139,7 @@ class StrengthItems extends Component {
             <Button variant="contained" onClick={this.handleClose}>
               Cancel
             </Button>
-            <Button variant="fab" color="primary" aria-label="add" onClick={this.props.update}><AddIcon /></Button>
+            <Button variant="fab" color="primary" aria-label="add" onClick={() => {this.props.update(this.props.article)}}><AddIcon /></Button>
           </DialogActions>
         </Dialog>
       </div >

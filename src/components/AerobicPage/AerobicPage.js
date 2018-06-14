@@ -116,6 +116,7 @@ class AerobicPage extends Component {
             })
     }
 
+
     deleteArticle = article => {
         axios.delete('/api/articles/aerobic', { params: { id: article.id, user_id: article.user_id } })
             .then((response) => {

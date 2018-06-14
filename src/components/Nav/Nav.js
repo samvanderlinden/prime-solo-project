@@ -11,8 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 const Nav = () => (
   <div className="navbar">
     <div>
-
-      <AppBar className="nav" position="static">
+      <AppBar className="nav" position="fixed">
       <ul>
         <li>
           <Link to="/user">
@@ -49,5 +48,4 @@ const Nav = () => (
     </div>
   </div>
 );
-
 export default Nav;

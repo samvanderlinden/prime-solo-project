@@ -25,11 +25,6 @@ router.get('/strength', (req, res) => {
     if (req.isAuthenticated()) {
         let queryText = `SELECT * FROM "article_table"
                          WHERE "article_table"."article_type" = 'strength training';`
-                         
-        // let queryText=`SELECT * FROM "person"
-        // JOIN "article_table" ON "article_table"."user_id" = "person"."id"
-        // WHERE "article_table"."article_type" = 'strength training';`
-
         pool.query(queryText)
             .then((result) => {
                 res.send(result.rows);
@@ -45,10 +40,6 @@ router.get('/strength', (req, res) => {
 router.get('/aerobic', (req, res) => {
     console.log('GET all aerobic training articles route');
     if (req.isAuthenticated()) {
-        // let queryText = `SELECT * FROM "person"
-        //                 JOIN "article_table" ON "article_table"."user_id" = "person"."id"
-        //                 JOIN "likes_table" ON "likes_table"."article_id" = "article_table"."id"
-        //                 WHERE "article_table"."article_type" = 'aerobic training';`;
         let queryText = `SELECT * FROM "article_table"
                         WHERE "article_table"."article_type" = 'aerobic training';`
 
@@ -67,10 +58,6 @@ router.get('/aerobic', (req, res) => {
 router.get('/hiit', (req, res) => {
     console.log('GET all hiit training articles route');
     if (req.isAuthenticated()) {
-        // let queryText = `SELECT * FROM "person"
-        //                 JOIN "article_table" ON "article_table"."user_id" = "person"."id"
-        //                 JOIN "likes_table" ON "likes_table"."article_id" = "article_table"."id"
-        //                 WHERE "article_table"."article_type" = 'high intensity interval training';`;
         let queryText = `SELECT * FROM "article_table"
                         WHERE "article_table"."article_type" = 'high intensity interval training';`
         pool.query(queryText)
@@ -88,10 +75,6 @@ router.get('/hiit', (req, res) => {
 router.get('/yoga', (req, res) => {
     console.log('GET all yoga training articles route');
     if (req.isAuthenticated()) {
-        // let queryText = `SELECT * FROM "person"
-        //                 JOIN "article_table" ON "article_table"."user_id" = "person"."id"
-        //                 JOIN "likes_table" ON "likes_table"."article_id" = "article_table"."id"
-        //                 WHERE "article_table"."article_type" = 'yoga training';`;
         let queryText = `SELECT * FROM "article_table"
                         WHERE "article_table"."article_type" = 'yoga';`
         pool.query(queryText)
@@ -255,13 +238,14 @@ router.delete('/yoga', (req, res) => {
 router.put('/strength', (req, res) => {
     console.log('PUT route');
     console.log('req.body', req.body);
-    if(req.isAuthenticated() && req.body.user_id == req.body.id) {
+    if(req.isAuthenticated() && req.body.user_id == req.user.id) {
         let queryText = `UPDATE "article_table" SET "title" = $1, "link" = $2, "study_details" = $3, "date_posted" = $4, "article_type" = $5, "user_id" = $6
                         WHERE "id" = $7`;
-        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id, req.body.id])
+        
+        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id, req.user.id])
+        // req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.user.id
         .then((result) => {
             console.log('PUT result.rows:', result.rows)
-            console.log
             res.sendStatus(200)
         })
         .catch((error) => {
