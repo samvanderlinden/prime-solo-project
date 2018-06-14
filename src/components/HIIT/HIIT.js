@@ -24,6 +24,7 @@ import Grid from '@material-ui/core/Grid';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import swal from 'sweetalert';
 
 const styles = theme => ({
     root: {
@@ -129,6 +130,22 @@ class HIIT extends Component {
             })
     }
 
+    updateHiitArticle = article => {
+        console.log('updatedArticle:', article);
+        axios.put('/api/articles/strength', article)
+        .then((response) => {
+            console.log('put hiit response', response);
+            this.getHiitArticles();
+        })
+        .catch((error) => {
+            console.log('error on put hiit article:', error);
+            swal({
+                title: 'You can only edit articles you added!',
+                icon: 'warning',
+            });
+        })    
+    }
+
     render() {
         let content = null;
         const { classes } = this.props;
@@ -186,6 +203,7 @@ class HIIT extends Component {
                                             <HiitItems key={article.id}
                                                 article={article}
                                                 delete={this.deleteArticle}
+                                                update={this.updateHiitArticle}
                                             />
                                         )}
                                     </Grid>
