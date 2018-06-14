@@ -60,6 +60,7 @@ class StrengthPage extends Component {
                 user_id: '',
                 id: '',
             },
+
             allStrengthArticles: [],
             open: false,
         }
@@ -89,9 +90,11 @@ class StrengthPage extends Component {
                 ...this.state.updateStrengthArticle,
                 [propertyName]: event.target.value,
             }
-        });
+                });
         console.log('event.target.value', event.target.value)
     }
+
+    
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });

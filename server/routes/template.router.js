@@ -242,7 +242,7 @@ router.put('/strength', (req, res) => {
         let queryText = `UPDATE "article_table" SET "title" = $1, "link" = $2, "study_details" = $3, "date_posted" = $4, "article_type" = $5, "user_id" = $6
                         WHERE "id" = $7`;
         
-        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id, req.user.id])
+        pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id, req.body.id])
         .then((result) => {
             console.log('PUT result.rows:', result.rows)
             res.sendStatus(200)
