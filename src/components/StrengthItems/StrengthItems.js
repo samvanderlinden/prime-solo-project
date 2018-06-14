@@ -57,6 +57,15 @@ class StrengthItems extends Component {
     super(props);
     this.state = {
       open: false,
+      updateStrengthArticle: {
+        title: '',
+        link: '',
+        article_type: '',
+        study_details: '',
+        date_posted: '',
+        user_id: this.props.article.user_id,
+        id: this.props.article.id,
+      },
     }
   }
 
@@ -67,6 +76,17 @@ class StrengthItems extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
+  handleChangeUpdate = propertyName => event => {
+    this.setState({
+      updateStrengthArticle: {
+        ...this.state.updateStrengthArticle,
+        [propertyName]: event.target.value,
+      }
+    });
+    console.log('event.target.value', event.target.value)
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -107,15 +127,15 @@ class StrengthItems extends Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <TextField margin="dense" autoFocus fullWidth className="input" onChange={this.props.handleChangeUpdate('title')} value={this.props.updateStrengthArticle.title} placeholder='Article Title' />
+            <TextField margin="dense" autoFocus fullWidth className="input" onChange={this.handleChangeUpdate('title')} value={this.state.updateStrengthArticle.title} placeholder='Article Title' />
             <br />
-            <TextField className="input" onChange={this.props.handleChangeUpdate('link')} value={this.props.updateStrengthArticle.link} placeholder='Article url here' />
+            <TextField className="input" onChange={this.handleChangeUpdate('link')} value={this.state.updateStrengthArticle.link} placeholder='Article url here' />
             <br />
             <FormControl>
-            
+
               <Select
-                value={this.props.updateStrengthArticle.article_type}
-                onChange={this.props.handleChangeUpdate('article_type')}
+                value={this.state.updateStrengthArticle.article_type}
+                onChange={this.handleChangeUpdate('article_type')}
                 displayEmpty
               >
                 <MenuItem value={'strength training'}>Strength Training</MenuItem>
@@ -128,20 +148,20 @@ class StrengthItems extends Component {
             <TextField
               multiline={true}
               rows={4}
-              className="input" onChange={this.props.handleChangeUpdate('study_details')} value={this.props.updateStrengthArticle.study_details} placeholder='Study details here' />
+              className="input" onChange={this.handleChangeUpdate('study_details')} value={this.state.updateStrengthArticle.study_details} placeholder='Study details here' />
             <br />
-            <TextField type="date" className="input" onChange={this.props.handleChangeUpdate('date_posted')} value={this.props.updateStrengthArticle.date_posted} placeholder='Date posted' />
+            <TextField type="date" className="input" onChange={this.handleChangeUpdate('date_posted')} value={this.state.updateStrengthArticle.date_posted} placeholder='Date posted' />
             <br />
-            <TextField className="input" onChange={this.props.handleChangeUpdate('user_id')} value={this.props.updateStrengthArticle.user_id} placeholder='User ID' />
+            {/* <TextField className="input" onChange={this.props.handleChangeUpdate('user_id')} value={this.props.updateStrengthArticle.user_id} placeholder='User ID' />
             <br />
             <TextField className="input" onChange={this.props.handleChangeUpdate('id')} value={this.props.updateStrengthArticle.id} placeholder='article id' />
-            <br />
+            <br /> */}
           </DialogContent>
           <DialogActions>
             <Button variant="contained" onClick={this.handleClose}>
               Cancel
             </Button>
-            <Button variant="fab" color="primary" aria-label="add" onClick={ () => this.props.update(this.props.updateStrengthArticle)}><AddIcon /></Button>
+            <Button variant="fab" color="primary" aria-label="add" onClick={() => this.props.update(this.state.updateStrengthArticle)}><AddIcon /></Button>
           </DialogActions>
           {JSON.stringify(this.props.updateStrengthArticle)}
         </Dialog>

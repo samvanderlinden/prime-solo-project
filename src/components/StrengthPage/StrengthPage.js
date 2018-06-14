@@ -51,15 +51,6 @@ class StrengthPage extends Component {
                 study_details: '',
                 date_posted: '',
             },
-            updateStrengthArticle: {
-                title: '',
-                link: '',
-                article_type: '',
-                study_details: '',
-                date_posted: '',
-                user_id: '',
-                id: '',
-            },
 
             allStrengthArticles: [],
             open: false,
@@ -84,15 +75,6 @@ class StrengthPage extends Component {
         console.log('event.target.value', event.target.value)
     }
 
-    handleChangeUpdate = propertyName => event => {
-        this.setState({
-            updateStrengthArticle: {
-                ...this.state.updateStrengthArticle,
-                [propertyName]: event.target.value,
-            }
-                });
-        console.log('event.target.value', event.target.value)
-    }
 
     
 
@@ -233,8 +215,8 @@ class StrengthPage extends Component {
                                                 update={this.updateArticle}
                                                 handleChange={this.handleChange}
                                                 newStrengthArticle={this.state.newStrengthArticle}
-                                                updateStrengthArticle={this.state.updateStrengthArticle}
-                                                handleChangeUpdate={this.handleChangeUpdate}
+                                                // updateStrengthArticle={this.state.updateStrengthArticle}
+                                                // handleChangeUpdate={this.handleChangeUpdate}
                                             />
                                         )}
                                     </Grid>
