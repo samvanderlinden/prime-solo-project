@@ -24,6 +24,7 @@ import Grid from '@material-ui/core/Grid';
 // import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import swal from 'sweetalert';
 
 const styles = theme => ({
     root: {
@@ -76,11 +77,12 @@ class AerobicPage extends Component {
         event.preventDefault();
         console.log('post button clicked');
         console.log('addNewAerobicArticle', this.state.newAerobicArticle);
-        axios.post('/api/articles/strength', this.state.newAerobicArticle).then(response => {
+        axios.post('/api/articles/strength', this.state.newAerobicArticle)
+        .then(response => {
             this.getAerobicArticles();
             console.log('addNewAerobicArticle response', response);
         }).catch(error => {
-            console.log('error on strengths articles post', error);
+            console.log('error on error articles post', error);
         })
         this.setState({
             newAerobicArticle: {
@@ -127,6 +129,21 @@ class AerobicPage extends Component {
                 console.log('error on aerobic article:', error);
                 alert('You can only delete the articles you added');
             })
+    }
+
+    updateAerobicArticle = article => {
+        axios.put('/api/articles/aerobic', article)
+        .then((response) => {
+            console.log('strengths put response', response);
+            this.getAerobicArticles();
+        })
+        .catch((error) => {
+            console.log('error on put aerobic article:', error);
+            swal({
+                title: 'You can only edit articles you added!',
+                icon: 'warning',
+            });
+        })    
     }
 
     render() {
@@ -199,6 +216,7 @@ class AerobicPage extends Component {
                                             <AerobicItems key={article.id}
                                                 article={article}
                                                 delete={this.deleteArticle}
+                                                update={this.updateAerobicArticle}
                                             />
                                         )}
                                     </Grid>

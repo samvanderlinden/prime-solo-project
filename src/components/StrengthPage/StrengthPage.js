@@ -213,8 +213,8 @@ class StrengthPage extends Component {
                                                 article={article}
                                                 delete={this.deleteArticle}
                                                 update={this.updateArticle}
-                                                handleChange={this.handleChange}
-                                                newStrengthArticle={this.state.newStrengthArticle}
+                                                // handleChange={this.handleChange}
+                                                // newStrengthArticle={this.state.newStrengthArticle}
                                                 // updateStrengthArticle={this.state.updateStrengthArticle}
                                                 // handleChangeUpdate={this.handleChangeUpdate}
                                             />

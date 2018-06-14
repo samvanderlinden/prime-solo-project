@@ -58,11 +58,11 @@ class StrengthItems extends Component {
     this.state = {
       open: false,
       updateStrengthArticle: {
-        title: '',
-        link: '',
-        article_type: '',
-        study_details: '',
-        date_posted: '',
+        title: this.props.article.title,
+        link: this.props.article.link,
+        article_type: this.props.article.article_type,
+        study_details: this.props.article.study_details,
+        date_posted: this.props.article.date_posted,
         user_id: this.props.article.user_id,
         id: this.props.article.id,
       },
