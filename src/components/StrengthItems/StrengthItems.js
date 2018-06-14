@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Nav from '../../components/Nav/Nav';
-import { USER_ACTIONS } from '../../redux/actions/userActions';
-import { triggerLogout } from '../../redux/actions/loginActions';
-import { Link } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
+// import Nav from '../../components/Nav/Nav';
+// import { USER_ACTIONS } from '../../redux/actions/userActions';
+// import { triggerLogout } from '../../redux/actions/loginActions';
+// import { Link } from 'react-router-dom';
+// import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -13,19 +13,19 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import moment from 'moment';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Icon from '@material-ui/core/Icon';
+// import Icon from '@material-ui/core/Icon';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/ModeEdit';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogContentText from '@material-ui/core/DialogContentText';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -57,6 +57,13 @@ class StrengthItems extends Component {
     super(props);
     this.state = {
       open: false,
+    //     updateStrengthArticle: {
+    //     title: '',
+    //     link: '',
+    //     article_type: '',
+    //     study_details: '',
+    //     date_posted: '',
+    // },
     }
   }
 
@@ -107,15 +114,15 @@ class StrengthItems extends Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <TextField margin="dense" autoFocus fullWidth className="input" onChange={this.props.handleChange('title')} value={this.props.newStrengthArticle.title} placeholder='Article Title' />
+            <TextField margin="dense" autoFocus fullWidth className="input" onChange={this.props.handleChangeUpdate('title')} value={this.props.updateStrengthArticle.title} placeholder='Article Title' />
             <br />
-            <TextField className="input" onChange={this.props.handleChange('link')} value={this.props.newStrengthArticle.link} placeholder='Article url here' />
+            <TextField className="input" onChange={this.props.handleChangeUpdate('link')} value={this.props.updateStrengthArticle.link} placeholder='Article url here' />
             <br />
             <FormControl>
             
               <Select
-                value={this.props.newStrengthArticle.article_type}
-                onChange={this.props.handleChange('article_type')}
+                value={this.props.updateStrengthArticle.article_type}
+                onChange={this.props.handleChangeUpdate('article_type')}
                 displayEmpty
               >
                 <MenuItem value={'strength training'}>Strength Training</MenuItem>
@@ -128,18 +135,24 @@ class StrengthItems extends Component {
             <TextField
               multiline={true}
               rows={4}
-              className="input" onChange={this.props.handleChange('study_details')} value={this.props.newStrengthArticle.study_details} placeholder='Study details here' />
+              className="input" onChange={this.props.handleChangeUpdate('study_details')} value={this.props.updateStrengthArticle.study_details} placeholder='Study details here' />
             <br />
-            <TextField type="date" className="input" onChange={this.props.handleChange('date_posted')} value={this.props.newStrengthArticle.date_posted} placeholder='Date posted' />
+            <TextField type="date" className="input" onChange={this.props.handleChangeUpdate('date_posted')} value={this.props.updateStrengthArticle.date_posted} placeholder='Date posted' />
+            <br />
+            <TextField className="input" onChange={this.props.handleChangeUpdate('user_id')} value={this.props.updateStrengthArticle.user_id} placeholder='User ID' />
+            <br />
+            <TextField className="input" onChange={this.props.handleChangeUpdate('id')} value={this.props.updateStrengthArticle.id} placeholder='article id' />
             <br />
           </DialogContent>
           <DialogActions>
             <Button variant="contained" onClick={this.handleClose}>
               Cancel
             </Button>
-            <Button variant="fab" color="primary" aria-label="add" onClick={ () => this.props.update(this.props.article)}><AddIcon /></Button>
+            <Button variant="fab" color="primary" aria-label="add" onClick={ () => this.props.update(this.props.updateStrengthArticle)}><AddIcon /></Button>
           </DialogActions>
+          {JSON.stringify(this.props.updateStrengthArticle)}
         </Dialog>
+
       </div >
     );
   }

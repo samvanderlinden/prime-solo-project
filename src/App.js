@@ -10,12 +10,11 @@ import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import UserPage from './components/UserPage/UserPage';
-import InfoPage from './components/InfoPage/InfoPage';
 import StrengthPage from './components/StrengthPage/StrengthPage';
 import AerobicPage from './components/AerobicPage/AerobicPage';
 import HIIT from './components/HIIT/HIIT';
 import YogaPage from './components/YogaPage/YogaPage';
-import StrengthComments from './components/StrengthComments/StrengthComments';
+
 
 
 import './styles/main.css';
@@ -40,10 +39,6 @@ const App = () => (
           path="/user"
           component={UserPage}
         />
-        {/* <Route
-          path="/info"
-          component={InfoPage}
-        /> */}
         <Route 
           path="/strength"
           component={StrengthPage}

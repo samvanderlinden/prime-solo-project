@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Nav from '../../components/Nav/Nav';
+// import Nav from '../../components/Nav/Nav';
 
-import { USER_ACTIONS } from '../../redux/actions/userActions';
-import { triggerLogout } from '../../redux/actions/loginActions';
+// import { USER_ACTIONS } from '../../redux/actions/userActions';
+// import { triggerLogout } from '../../redux/actions/loginActions';
 import moment from 'moment';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -15,7 +15,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 
@@ -73,15 +73,6 @@ const{classes} = this.props;
             <Button variant="fab" mini color="secondary" aria-label="delete" onClick={() => this.props.delete(this.props.article)}><DeleteIcon/></Button><br />
           </CardActions>
         </Card>
-                {/* <p>
-                New article: {this.props.article.title} <br/>
-                Article url: <a href="{this.props.article.link}">{this.props.article.link}</a><br/>
-                Exercise type: {this.props.article.article_type}<br/>
-                Study details: {this.props.article.study_details}<br/>
-                Date posted: {moment(this.props.article.date_posted).format('MMMM Do YYYY')}<br/>
-                user_id: {this.props.article.user_id}<br/>
-                Delete article: <button onClick={() => this.props.delete(this.props.article)}>Delete</button><br/>
-                </p> */}
             </div>
         );
 

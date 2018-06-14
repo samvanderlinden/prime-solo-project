@@ -243,7 +243,6 @@ router.put('/strength', (req, res) => {
                         WHERE "id" = $7`;
         
         pool.query(queryText, [req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.body.user_id, req.user.id])
-        // req.body.title, req.body.link, req.body.study_details, req.body.date_posted, req.body.article_type, req.user.id
         .then((result) => {
             console.log('PUT result.rows:', result.rows)
             res.sendStatus(200)
