@@ -24,6 +24,7 @@ import Grid from '@material-ui/core/Grid';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import swal from 'sweetalert';
 
 const styles = theme => ({
     root: {
@@ -130,6 +131,22 @@ class YogaPage extends Component {
             })
     }
 
+    updateYogaArticle = article => {
+        console.log('updatedArticle:', article);
+        axios.put('/api/articles/yoga', article)
+        .then((response) => {
+            console.log('strengths put response', response);
+            this.getYogaArticles();
+        })
+        .catch((error) => {
+            console.log('error on put yoga article:', error);
+            swal({
+                title: 'You can only edit articles you added!',
+                icon: 'warning',
+            });
+        })    
+    }
+
     render() {
         let content = null;
         const { classes } = this.props;
@@ -187,6 +204,7 @@ class YogaPage extends Component {
                                             <YogaItems key={article.id}
                                                 article={article}
                                                 delete={this.deleteArticle}
+                                                update={this.updateYogaArticle}
                                             />
                                         )}
                                     </Grid>
