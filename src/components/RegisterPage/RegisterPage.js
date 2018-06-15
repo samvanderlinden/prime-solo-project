@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -94,12 +95,13 @@ class RegisterPage extends Component {
             </label>
           </div>
           <div>
-            <input
+            {/* <input
               type="submit"
               name="submit"
               value="Register"
-            />
-            <Link to="/home">Cancel</Link>
+            /> */}
+            <Button variant="contained" color="primary" onClick={this.registerUser}>Login</Button>
+            <Button variant="contained" color="default" ><Link to="/home" style={{textDecoration: 'none'}}>Cancel</Link></Button>
           </div>
         </form>
       </div>

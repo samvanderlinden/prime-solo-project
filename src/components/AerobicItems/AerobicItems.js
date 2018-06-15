@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-// import Nav from '../../components/Nav/Nav';
-
-// import { USER_ACTIONS } from '../../redux/actions/userActions';
-// import { triggerLogout } from '../../redux/actions/loginActions';
 import moment from 'moment';
-// import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -15,27 +9,16 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import classNames from 'classnames';
 import DeleteIcon from '@material-ui/icons/Delete';
 import TextField from '@material-ui/core/TextField';
 import AddIcon from '@material-ui/icons/Add';
-// import Icon from '@material-ui/core/Icon';
-// import Input from '@material-ui/core/Input';
-// import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import EditIcon from '@material-ui/icons/ModeEdit';
-// import DialogContentText from '@material-ui/core/DialogContentText';
-// import DialogTitle from '@material-ui/core/DialogTitle';
-// import Grid from '@material-ui/core/Grid';
-// import classNames from 'classnames';
-
-
 
 const styles = {
   card: {
@@ -58,7 +41,7 @@ const styles = {
 
 
 const mapStateToProps = state => ({
-    user: state.user,
+  user: state.user,
 });
 
 class AerobicItems extends Component {
@@ -95,33 +78,33 @@ class AerobicItems extends Component {
     });
     console.log('event.target.value', event.target.value)
   }
-    render() {
-      const{classes} = this.props;
-        return (
-            <div>
-            <Card className={classes.card} style={{maxHeight: 425, overflow: 'auto', margin: 8}}>
-        <CardMedia
-          className={classes.media}
-          image="https://images.unsplash.com/photo-1521816043604-6bbe57d1c281?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12f47e521de9f423319bf0c2a656ac00&auto=format&fit=crop&w=500&q=60"
-          title="Aerobic Training"
-        />
+  render() {
+    const { classes } = this.props;
+    return (
+      <div>
+        <Card className={classes.card} style={{ maxHeight: 425, overflow: 'auto', margin: 8 }}>
+          <CardMedia
+            className={classes.media}
+            image="https://images.unsplash.com/photo-1521816043604-6bbe57d1c281?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12f47e521de9f423319bf0c2a656ac00&auto=format&fit=crop&w=500&q=60"
+            title="Aerobic Training"
+          />
           <CardContent>
             <Typography variant="headline" component="h1">
               New article: {this.props.article.title}
             </Typography>
             <Typography component="p">
-            Article source: <a href="{this.props.article.link}" target="{this.props.article.link}" >{this.props.article.link}</a>
+              Article source: <a href={this.props.article.link} target="_blank" >Go to article</a>
             </Typography>
             <Typography component="p">
-            Exercise type: {this.props.article.article_type}
+              Exercise type: {this.props.article.article_type}
             </Typography>
             <Typography component="p">
-            Study details: {this.props.article.study_details}
+              Study details: {this.props.article.study_details}
             </Typography>
             Date posted: {moment(this.props.article.date_posted).format('MMMM Do YYYY')}
           </CardContent>
           <CardActions>
-            <Button variant="fab" mini color="secondary" aria-label="delete" onClick={() => this.props.delete(this.props.article)}><DeleteIcon/></Button><br />
+            <Button variant="fab" mini color="secondary" aria-label="delete" onClick={() => this.props.delete(this.props.article)}><DeleteIcon /></Button><br />
             <Button variant="fab" mini color="secondary" aria-label="edit" onClick={this.handleClickOpen}><EditIcon /></Button>
           </CardActions>
         </Card>
@@ -157,10 +140,6 @@ class AerobicItems extends Component {
             <br />
             <TextField type="date" className="input" onChange={this.handleChangeUpdate('date_posted')} value={this.state.updateAerobicArticle.date_posted} placeholder='Date posted' />
             <br />
-            {/* <TextField className="input" onChange={this.props.handleChangeUpdate('user_id')} value={this.props.updateStrengthArticle.user_id} placeholder='User ID' />
-            <br />
-            <TextField className="input" onChange={this.props.handleChangeUpdate('id')} value={this.props.updateStrengthArticle.id} placeholder='article id' />
-            <br /> */}
           </DialogContent>
           <DialogActions>
             <Button variant="contained" onClick={this.handleClose}>
@@ -168,15 +147,14 @@ class AerobicItems extends Component {
             </Button>
             <Button variant="fab" color="primary" aria-label="add" onClick={() => this.props.update(this.state.updateAerobicArticle)}><AddIcon /></Button>
           </DialogActions>
-          {/* {JSON.stringify(this.props.updateStrengthArticle)} */}
         </Dialog>
-            </div>
-        );
+      </div>
+    );
 
-        AerobicItems.propTypes = {
-            classes: PropTypes.object.isRequired,
-          };
-    }
+    AerobicItems.propTypes = {
+      classes: PropTypes.object.isRequired,
+    };
+  }
 
 
 

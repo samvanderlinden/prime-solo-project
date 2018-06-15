@@ -98,10 +98,10 @@ class HiitItems extends Component {
                     />
                     <CardContent>
                         <Typography variant="headline" component="h1">
-                            New article: {this.props.article.title}
+                            Title: {this.props.article.title}
                         </Typography>
                         <Typography component="p">
-                            Article source: <a href="{this.props.article.link}" target="{this.props.article.link}" >{this.props.article.link}</a>
+                            Article source: <a href={this.props.article.link} target="_blank" >Go to article</a>
                         </Typography>
                         <Typography component="p">
                             Exercise type: {this.props.article.article_type}

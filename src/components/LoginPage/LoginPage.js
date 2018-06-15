@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { triggerLogin, formError, clearError } from '../../redux/actions/loginActions';
 import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -90,14 +91,16 @@ class LoginPage extends Component {
               />
             </label>
           </div>
-          <div>
+          <div id="loginAndRegister">
             
-            <input
+            {/* <input
               type="submit"
               name="submit"
               value="Log In"
-            />
-            <Link to="/register">Register</Link>
+            /> */}
+            <Button variant="contained" color="primary" onClick={this.login}>Login</Button>
+
+            <Button variant="contained" color="default" ><Link to="/register" style={{textDecoration: 'none'}}>Register</Link></Button>
           </div>
         </form>
       </div>

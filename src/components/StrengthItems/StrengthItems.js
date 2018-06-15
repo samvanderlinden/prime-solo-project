@@ -100,11 +100,11 @@ class StrengthItems extends Component {
             title="Strength Training"
           />
           <CardContent>
-            <Typography variant="headline" component="h1">
-              New article: {this.props.article.title}
+            <Typography variant="headline" component="h1" className="articleTitle">
+              Title: {this.props.article.title}
             </Typography>
-            <Typography component="p">
-              Article source: <a href="{this.props.article.link}" target="{this.props.article.link}" >{this.props.article.link}</a>
+            <Typography variant="title" component="p">
+              Article source: <a href={this.props.article.link} target="_blank" >Go to article</a>
             </Typography>
             <Typography component="p">
               Exercise type: {this.props.article.article_type}
@@ -152,10 +152,7 @@ class StrengthItems extends Component {
             <br />
             <TextField type="date" className="input" onChange={this.handleChangeUpdate('date_posted')} value={this.state.updateStrengthArticle.date_posted} placeholder='Date posted' />
             <br />
-            {/* <TextField className="input" onChange={this.props.handleChangeUpdate('user_id')} value={this.props.updateStrengthArticle.user_id} placeholder='User ID' />
-            <br />
-            <TextField className="input" onChange={this.props.handleChangeUpdate('id')} value={this.props.updateStrengthArticle.id} placeholder='article id' />
-            <br /> */}
+
           </DialogContent>
           <DialogActions>
             <Button variant="contained" onClick={this.handleClose}>
@@ -163,7 +160,6 @@ class StrengthItems extends Component {
             </Button>
             <Button variant="fab" color="primary" aria-label="add" onClick={() => this.props.update(this.state.updateStrengthArticle)}><AddIcon /></Button>
           </DialogActions>
-          {JSON.stringify(this.props.updateStrengthArticle)}
         </Dialog>
 
       </div >

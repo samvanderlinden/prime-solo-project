@@ -103,7 +103,7 @@ class YogaItems extends Component {
               New article: {this.props.article.title}
             </Typography>
             <Typography component="p">
-            Article source: <a href="{this.props.article.link}" target="{this.props.article.link}" >{this.props.article.link}</a>
+            Article source: <a href={this.props.article.link} target="_blank" >Go to article</a>
             </Typography>
             <Typography component="p">
             Exercise type: {this.props.article.article_type}

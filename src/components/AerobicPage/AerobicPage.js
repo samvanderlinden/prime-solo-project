@@ -107,7 +107,8 @@ class AerobicPage extends Component {
     }
 
     getAerobicArticles = () => {
-        axios.get('/api/articles/aerobic').then((response) => {
+        axios.get('/api/articles/aerobic')
+        .then((response) => {
             console.log('GET aerobic articles response.data', response.data);
             this.setState({
                 allAerobicArticles: response.data
@@ -127,7 +128,10 @@ class AerobicPage extends Component {
             })
             .catch((error) => {
                 console.log('error on aerobic article:', error);
-                alert('You can only delete the articles you added');
+                swal({
+                    title: 'You can only delete the articles you added',
+                    icon: 'warning',
+                });
             })
     }
 
@@ -149,7 +153,6 @@ class AerobicPage extends Component {
     render() {
         let content = null;
         const { classes } = this.props;
-        const { spacing } = this.state;
 
         if (this.props.user.userName) {
             content = (

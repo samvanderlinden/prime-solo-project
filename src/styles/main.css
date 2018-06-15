@@ -1,16 +1,23 @@
 #about {
     /* background-color: #163260; */
-    /* width: 60%; */
+    width: 70%;
     margin: 20px auto;
     padding: 25px;
     color: black;
     font-size: 40px;
     font-family: 'Raleway', sans-serif;
-    background-color: rgb(99, 86, 172);
+    /* background-color: rgb(99, 86, 172); */
+    font-family: 'Raleway', sans-serif;
+
+}
+
+.articleTitle {
+    color: blue;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: 'Raleway', sans-serif;
 }
 
 
@@ -19,7 +26,6 @@ body {
     font-weight: 400;
     text-align: center;
     margin-top: 200px;
-    /* font-family: 'Raleway', sans-serif; */
 }
 
 .instructions {
@@ -40,10 +46,6 @@ form {
     padding: 25px;
     border-radius: 2px;
 }
-
-/* .header {
-    font-size: 45px;
-} */
 
 input {
     margin: 5px;
@@ -98,6 +100,10 @@ li a {
 
 li a:hover {
     color: rgb(190, 190, 190);
+}
+
+#loginAndRegister {
+    margin-top: 20px;
 }
 
 /* .submitModalButton {

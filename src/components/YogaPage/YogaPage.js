@@ -127,7 +127,9 @@ class YogaPage extends Component {
             })
             .catch((error) => {
                 console.log('error on delete yoga article:', error);
-                alert('You can only delete the articles you added');
+                swal({
+                    title: 'You can only delete the articles you added',
+                    icon: 'warning'});
             })
     }
 
