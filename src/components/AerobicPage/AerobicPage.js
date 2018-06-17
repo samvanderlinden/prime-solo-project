@@ -79,7 +79,12 @@ class AerobicPage extends Component {
         console.log('addNewAerobicArticle', this.state.newAerobicArticle);
         axios.post('/api/articles/strength', this.state.newAerobicArticle)
         .then(response => {
+            
             this.getAerobicArticles();
+            swal({
+                title: 'You succesfully submitted an article!',
+                icon: 'success',
+            });
             console.log('addNewAerobicArticle response', response);
         }).catch(error => {
             console.log('error on error articles post', error);

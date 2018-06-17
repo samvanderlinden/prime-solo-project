@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
-import { triggerLogout } from '../../redux/actions/loginActions';
 import axios from 'axios';
 import StrengthItems from '../StrengthItems/StrengthItems';
 import TextField from '@material-ui/core/TextField';
@@ -110,6 +109,10 @@ class StrengthPage extends Component {
         .then(response => {
             console.log(response);
             this.getStrengthArticles();
+            swal({
+                title: 'You succesfully submitted an article!',
+                icon: 'success',
+            });
         }).catch(error => {
             console.log('error on strengths articles post', error);
         })

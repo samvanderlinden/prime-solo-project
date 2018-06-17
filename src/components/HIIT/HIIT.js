@@ -14,7 +14,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Grid from '@material-ui/core/Grid';
-
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import swal from 'sweetalert';
@@ -97,6 +96,10 @@ class HIIT extends Component {
         axios.post('/api/articles/hiit', this.state.newHiitArticle).then(response => {
             this.getHiitArticles();
             console.log(response);
+            swal({
+                title: 'You succesfully submitted an article!',
+                icon: 'success',
+            });
         }).catch(error => {
             console.log('error on hiit articles post', error);
         })

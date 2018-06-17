@@ -2,26 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
-import { triggerLogout } from '../../redux/actions/loginActions';
 import axios from 'axios';
 import YogaItems from '../YogaItems/YogaItems';
 import TextField from '@material-ui/core/TextField';
 import AddIcon from '@material-ui/icons/Add';
-import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import swal from 'sweetalert';
@@ -105,6 +97,10 @@ class YogaPage extends Component {
         axios.post('/api/articles/yoga', this.state.newYogaArticle).then(response => {
             console.log(response);
             this.getYogaArticles();
+            swal({
+                title: 'You succesfully submitted an article!',
+                icon: 'success',
+            });
         }).catch(error => {
             console.log('error on yoga articles post', error);
         })
@@ -129,24 +125,25 @@ class YogaPage extends Component {
                 console.log('error on delete yoga article:', error);
                 swal({
                     title: 'You can only delete the articles you added',
-                    icon: 'warning'});
+                    icon: 'warning'
+                });
             })
     }
 
     updateYogaArticle = article => {
         console.log('updatedArticle:', article);
         axios.put('/api/articles/yoga', article)
-        .then((response) => {
-            console.log('strengths put response', response);
-            this.getYogaArticles();
-        })
-        .catch((error) => {
-            console.log('error on put yoga article:', error);
-            swal({
-                title: 'You can only edit articles you added!',
-                icon: 'warning',
-            });
-        })    
+            .then((response) => {
+                console.log('strengths put response', response);
+                this.getYogaArticles();
+            })
+            .catch((error) => {
+                console.log('error on put yoga article:', error);
+                swal({
+                    title: 'You can only edit articles you added!',
+                    icon: 'warning',
+                });
+            })
     }
 
     render() {

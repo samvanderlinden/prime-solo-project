@@ -27,12 +27,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Divider from '@material-ui/core/Divider';
 
 
 const styles = {
   card: {
-    width: 395,
-    height: 450,
+    width: 375,
+    height: 630,
     marginBottom: 12,
   },
   title: {
@@ -92,26 +93,29 @@ class YogaItems extends Component {
         const{classes}=this.props;
         return (
             <div>
-                <Card className={classes.card} style={{maxHeight: 425, overflow: 'auto', margin: 8}}>
+                <Card className={classes.card} style={{maxHeight: 630, overflow: 'auto', margin: 8}}>
         <CardMedia
           className={classes.media}
           image="https://images.unsplash.com/photo-1508050249562-b28a87434496?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=58c6f24f1cc11a17402f649ecf3e46d6&auto=format&fit=crop&w=500&q=60"
           title="Yoga Training"
         />
           <CardContent>
-            <Typography variant="headline" component="h1">
-              New article: {this.props.article.title}
+            <Typography variant="headline" component="h1" style={{marginBottom: 10}}>
+              <b>New article:</b> {this.props.article.title}
+              <Divider className={classes.divider} style={{marginLeft: "0"}} inset />
             </Typography>
-            <Typography component="p">
-            Article source: <a href={this.props.article.link} target="_blank" >Go to article</a>
+            <Typography component="p" style={{marginBottom: 10}}>
+            <b>Article source:</b> <a href={this.props.article.link} target="_blank" >Go to article</a>
             </Typography>
-            <Typography component="p">
-            Exercise type: {this.props.article.article_type}
+            <Typography component="p" style={{marginBottom: 10}}>
+            <b>Exercise type:</b> {this.props.article.article_type}
             </Typography>
-            <Typography component="p">
-            Study details: {this.props.article.study_details}
+            <Typography component="p" style={{marginBottom: 10}}>
+            <b>Study details:</b> {this.props.article.study_details}
             </Typography>
-            Date posted: {moment(this.props.article.date_posted).format('MMMM Do YYYY')}
+            <Typography>
+            <b>Date posted:</b> {moment(this.props.article.date_posted).format('MMMM Do YYYY')}
+            </Typography>
           </CardContent>
           <CardActions>
             <Button variant="fab" mini color="secondary" aria-label="delete" onClick={() => this.props.delete(this.props.article)}><DeleteIcon/></Button>

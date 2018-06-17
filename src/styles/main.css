@@ -1,14 +1,10 @@
 #about {
-    /* background-color: #163260; */
     width: 70%;
     margin: 20px auto;
     padding: 25px;
     color: black;
     font-size: 40px;
     font-family: 'Raleway', sans-serif;
-    /* background-color: rgb(99, 86, 172); */
-    font-family: 'Raleway', sans-serif;
-
 }
 
 .articleTitle {
@@ -16,8 +12,9 @@
 }
 
 body {
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     font-family: 'Raleway', sans-serif;
+    /* background-color: #c3cae5; */
+    background-color: #a0a6bc;
 }
 
 
@@ -29,7 +26,6 @@ body {
 }
 
 .instructions {
-    /* background-color: #00acb0; */
     padding: 5px;
     color: #ece7e7;
     background-image: url('https://images.unsplash.com/photo-1499438075715-fc23ef376ab9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6be00acf4c3c3b5750307385633e8149&auto=format&fit=crop&w=1008&q=80');
@@ -106,6 +102,3 @@ li a:hover {
     margin-top: 20px;
 }
 
-/* .submitModalButton {
-    margin-top: 100px;
-} */
