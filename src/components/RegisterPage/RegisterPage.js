@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 
 class RegisterPage extends Component {
@@ -74,10 +75,10 @@ class RegisterPage extends Component {
           <h1>Register User</h1>
           <div>
             <label htmlFor="username">
-              Username:
-              <input
+              <Input
+                placeholder="Username"
                 type="text"
-                name="username"
+                className="registerUsernameInput"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
               />
@@ -85,21 +86,16 @@ class RegisterPage extends Component {
           </div>
           <div>
             <label htmlFor="password">
-              Password:
-              <input
+              <Input
                 type="password"
-                name="password"
+                placeholder="Password"
+                className="registerPasswordInput"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
               />
             </label>
           </div>
           <div>
-            {/* <input
-              type="submit"
-              name="submit"
-              value="Register"
-            /> */}
             <Button variant="contained" color="primary" onClick={this.registerUser}>Login</Button>
             <Button variant="contained" color="default" ><Link to="/home" style={{textDecoration: 'none'}}>Cancel</Link></Button>
           </div>

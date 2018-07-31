@@ -95,17 +95,17 @@ class StrengthItems extends Component {
             title="Strength Training"
           />
           <CardContent>
-            <Typography variant="headline" component="h1" style={{marginBottom: 10}}>
+            <Typography variant="headline" component="h1" style={{ marginBottom: 10 }}>
               <b>Title:</b> {this.props.article.title}
-              <Divider className={classes.divider} style={{marginLeft: "0"}} inset />
+              <Divider className={classes.divider} style={{ marginLeft: "0" }} inset />
             </Typography>
-            <Typography component="p" style={{marginBottom: 10}}>
+            <Typography component="p" style={{ marginBottom: 10 }}>
               <b>Article source:</b> <a href={this.props.article.link} target="_blank" >Go to article</a>
             </Typography>
-            <Typography component="p" style={{marginBottom: 10}}>
+            <Typography component="p" style={{ marginBottom: 10 }}>
               <b>Exercise type:</b> {this.props.article.article_type}
             </Typography>
-            <Typography component="p" style={{marginBottom: 10}}>
+            <Typography component="p" style={{ marginBottom: 10 }}>
               <b>Study details:</b> {this.props.article.study_details}
             </Typography>
             <Typography>
@@ -130,7 +130,6 @@ class StrengthItems extends Component {
             <TextField className="input" onChange={this.handleChangeUpdate('link')} value={this.state.updateStrengthArticle.link} placeholder='Article url here' />
             <br />
             <FormControl>
-
               <Select
                 value={this.state.updateStrengthArticle.article_type}
                 onChange={this.handleChangeUpdate('article_type')}
@@ -150,7 +149,6 @@ class StrengthItems extends Component {
             <br />
             <TextField type="date" className="input" onChange={this.handleChangeUpdate('date_posted')} value={this.state.updateStrengthArticle.date_posted} placeholder='Date posted' />
             <br />
-
           </DialogContent>
           <DialogActions>
             <Button variant="contained" onClick={this.handleClose}>
@@ -159,7 +157,6 @@ class StrengthItems extends Component {
             <Button variant="fab" color="primary" aria-label="add" onClick={() => this.props.update(this.state.updateStrengthArticle)}><AddIcon /></Button>
           </DialogActions>
         </Dialog>
-
       </div >
     );
   }

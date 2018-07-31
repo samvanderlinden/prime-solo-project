@@ -73,7 +73,7 @@ class LoginPage extends Component {
             <label htmlFor="username">
               <Input
                 type="text"
-                // name="username"
+                className="loginUsernameInput"
                 placeholder="Username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
@@ -85,6 +85,7 @@ class LoginPage extends Component {
               <Input
                 placeholder="Password"
                 type="password"
+                className="loginPasswordInput"
                 // name="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}

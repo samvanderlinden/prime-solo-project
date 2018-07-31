@@ -3,7 +3,7 @@
     margin: 20px auto;
     padding: 25px;
     color: black;
-    font-size: 40px;
+    font-size: 4vw;
     font-family: 'Raleway', sans-serif;
 }
 
@@ -19,7 +19,7 @@ body {
 
 
 .instructions h1 {
-    font-size: 120px;
+    font-size: 8vw;
     font-weight: 400;
     text-align: center;
     margin-top: 200px;
@@ -31,7 +31,7 @@ body {
     background-image: url('https://images.unsplash.com/photo-1499438075715-fc23ef376ab9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6be00acf4c3c3b5750307385633e8149&auto=format&fit=crop&w=1008&q=80');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 400px;
+    height: 450px;
 }
 
 form {
@@ -50,6 +50,14 @@ input {
 
 input[type="submit"] {
     margin: 10px;
+}
+
+.loginUsernameInput {
+    width: 80%;
+}
+
+.loginPasswordInput {
+    width: 80%;
 }
 
 .message {
@@ -72,6 +80,14 @@ input[type="submit"] {
   background-color: #00acb0;
   width: 100%;
   border-radius: 0px;
+}
+
+.registerUsernameInput {
+    width: 80%;
+}
+
+.registerPasswordInput {
+    width: 80%;
 }
 
 ul {
